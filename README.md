@@ -1,1 +1,1 @@
-# WMM-Weekmotion
+# WMM-Weekmotion-frontend
