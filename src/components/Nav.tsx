@@ -11,7 +11,7 @@ export default function Nav() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={'/diary'}>일</Link>
+            <Link to={'/diary'}>일기</Link>
           </li>
           <li>
             <Link to={'/calendar'}>켈린더</Link>
