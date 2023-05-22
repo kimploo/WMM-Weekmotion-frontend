@@ -1,39 +1,35 @@
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  createRoutesFromElements,
+  Route
+} from 'react-router-dom';
 import Diary from './pages/Diary';
 import Calendar from './pages/Calendar';
 
 import './index.css';
 import Nav from './components/Nav';
+import Entry from './pages/Entry';
 
-function Layout() {
+const Layout = () => {
   return (
     <>
       <Nav></Nav>
       <Outlet></Outlet>
     </>
   );
-}
+};
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    Component: Layout,
-    children: [
-      {
-        index: true,
-        Component: Diary
-      },
-      {
-        path: 'diary',
-        Component: Diary
-      },
-      {
-        path: 'calendar',
-        Component: Calendar
-      }
-    ]
-  }
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Entry />}></Route>
+      <Route path="diary" element={<Diary />}></Route>
+      <Route path="calendar" element={<Calendar />}></Route>
+    </Route>
+  )
+);
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());
