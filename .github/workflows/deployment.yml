@@ -1,6 +1,9 @@
 name: Deploy Development Version
 
 on:
+  push:
+    branches:
+      - dev
   pull_request:
     types:
       - closed
