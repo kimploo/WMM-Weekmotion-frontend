@@ -11,6 +11,7 @@ import Calendar from './pages/Calendar';
 import './index.css';
 import Nav from './components/Nav';
 import Entry from './pages/Entry';
+import UserValidation from './pages/Login';
 
 const Layout = () => {
   return (
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route index element={<Entry />}></Route>
       <Route path="diary" element={<Diary />}></Route>
       <Route path="calendar" element={<Calendar />}></Route>
+      <Route path="login" element={<UserValidation />}></Route>
     </Route>
   )
 );
