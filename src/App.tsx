@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Diary from './pages/Diary';
 import Calendar from './pages/Calendar';
+import Register from './pages/Register';
 
 import './index.css';
 import Nav from './components/Nav';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'calendar',
         Component: Calendar
+      },
+      {
+        path: 'register',
+        Component: Register
       }
     ]
   }
