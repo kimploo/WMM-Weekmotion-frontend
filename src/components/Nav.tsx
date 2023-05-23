@@ -1,22 +1,18 @@
 import { Link } from 'react-router-dom';
 
+import weekmotionTitle from '../assets/images/weekmotion_title.svg';
+import hamburger from '../assets/images/hamburger.svg';
+
 export default function Nav() {
   return (
-    <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <Link className="btn btn-ghost normal-case text-xl" to={'/'}>
-          daisyUI
+    <div className="navbar bg-mono-100">
+      <div className="flex-1 pl-4">
+        <Link to={'/'}>
+          <img src={weekmotionTitle} alt="title" />
         </Link>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to={'/diary'}>일</Link>
-          </li>
-          <li>
-            <Link to={'/calendar'}>켈린더</Link>
-          </li>
-        </ul>
+      <div className="flex-none pr-4">
+        <img src={hamburger} alt="menu" className="cursor-pointer" />
       </div>
     </div>
   );
