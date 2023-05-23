@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
+
+import { positiveEmotion } from '../assets/strings/emotions';
+import { change } from '../redux/slice/noteSlice';
 
 export default function Diary() {
   const [note, setNote] = useState<string>('');
+  const dispatch = useDispatch();
   const state = useSelector((state: RootState) => {
     return state.emotion;
   });
@@ -20,7 +24,11 @@ export default function Diary() {
         {state.emotion.map((item: string, index: number) => (
           <div
             key={index}
-            className="badge bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer m-1 p-3"
+            className={
+              positiveEmotion.includes(item)
+                ? 'badge bg-emotion-lightPink border-emotion-lightPink text-mono-700 m-1 p-3'
+                : 'badge bg-emotion-lightBlue border-emotion-lightBlue  text-mono-700 m-1 p-3'
+            }
           >
             {item}
           </div>
@@ -34,8 +42,12 @@ export default function Diary() {
         id="textarea"
         className="textarea textarea-bordered h-1/2 bg-mono-100 text-mono-700 resize-none"
         onChange={onChange}
+        required
       />
-      <button className="btn w-full my-4 rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
+      <button
+        className="btn w-full my-4 rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100"
+        onClick={() => dispatch(change(note))}
+      >
         다음
       </button>
     </section>
