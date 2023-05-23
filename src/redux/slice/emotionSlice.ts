@@ -3,13 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 const emotionSlice = createSlice({
   name: 'emotion',
   initialState: {
-    emotion: []
+    emotion: [] as string[]
   },
   reducers: {
-    CHANGE: (state, action) => {
-      state = action.payload;
+    change: (state, action) => {
+      state.emotion = action.payload;
     }
   }
 });
 
+export const { change } = emotionSlice.actions;
 export default emotionSlice;
