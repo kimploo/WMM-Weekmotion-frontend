@@ -5,6 +5,7 @@ import { RootState } from '../redux';
 
 import { positiveEmotion } from '../assets/strings/emotions';
 import { change } from '../redux/slice/noteSlice';
+import { Link } from 'react-router-dom';
 
 export default function Diary() {
   const [note, setNote] = useState<string>('');
@@ -44,12 +45,14 @@ export default function Diary() {
         onChange={onChange}
         required
       />
-      <button
-        className="btn w-full my-4 rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100"
-        onClick={() => dispatch(change(note))}
-      >
-        다음
-      </button>
+      <Link to={'/after'}>
+        <button
+          className="btn w-full my-4 rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100"
+          onClick={() => dispatch(change(note))}
+        >
+          다음
+        </button>
+      </Link>
     </section>
   );
 }

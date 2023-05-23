@@ -7,6 +7,7 @@ import Calendar from './pages/Calendar';
 import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
+import After from './pages/After';
 import './index.css';
 
 function Layout() {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 'before',
         Component: Before
+      },
+      {
+        path: 'after',
+        Component: After
       }
     ]
   }
