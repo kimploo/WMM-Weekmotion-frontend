@@ -5,13 +5,15 @@ import {
   createRoutesFromElements,
   Route
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux';
+import Menu from './pages/Menu';
 import Diary from './pages/Diary';
 import Calendar from './pages/Calendar';
-
-import './index.css';
+import Register from './pages/Register';
 import Nav from './components/Nav';
-import Entry from './pages/Entry';
-import UserValidation from './pages/Login';
+import Before from './pages/Before';
+import After from './pages/After';
 
 const Layout = () => {
   return (
@@ -25,10 +27,12 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Entry />}></Route>
+      <Route index element={<Diary />}></Route>
       <Route path="diary" element={<Diary />}></Route>
       <Route path="calendar" element={<Calendar />}></Route>
-      <Route path="login" element={<UserValidation />}></Route>
+      <Route path="register" element={<Register />}></Route>
+      <Route path="before" element={<Before />}></Route>
+      <Route path="after" element={<After />}></Route>
     </Route>
   )
 );
@@ -39,8 +43,8 @@ if (import.meta.hot) {
 
 export default function App() {
   return (
-    <>
+    <Provider store={store}>
       <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
-    </>
+    </Provider>
   );
 }
