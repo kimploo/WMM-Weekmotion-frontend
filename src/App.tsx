@@ -1,4 +1,10 @@
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  createRoutesFromElements,
+  Route
+} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux';
 import Menu from './pages/Menu';
@@ -10,47 +16,27 @@ import Before from './pages/Before';
 import After from './pages/After';
 import './index.css';
 
-function Layout() {
+const Layout = () => {
   return (
     <>
       <Nav></Nav>
       <Outlet></Outlet>
     </>
   );
-}
+};
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    Component: Layout,
-    children: [
-      {
-        index: true,
-        Component: Menu
-      },
-      {
-        path: 'diary',
-        Component: Diary
-      },
-      {
-        path: 'calendar',
-        Component: Calendar
-      },
-      {
-        path: 'register',
-        Component: Register
-      },
-      {
-        path: 'before',
-        Component: Before
-      },
-      {
-        path: 'after',
-        Component: After
-      }
-    ]
-  }
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Diary />}></Route>
+      <Route path="diary" element={<Diary />}></Route>
+      <Route path="calendar" element={<Calendar />}></Route>
+      <Route path="register" element={<Register />}></Route>
+      <Route path="before" element={<Before />}></Route>
+      <Route path="after" element={<After />}></Route>
+    </Route>
+  )
+);
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());

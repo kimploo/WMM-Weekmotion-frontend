@@ -16,7 +16,7 @@ export default function After() {
   const dispatch = useDispatch();
 
   const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    const { innerText } = event.target;
+    const { innerText } = event.target as HTMLDivElement;
     if (!emotion.includes(innerText) && emotion.length < 3) {
       setEmotion([...emotion, innerText]);
     } else {
