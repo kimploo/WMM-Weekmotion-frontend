@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './redux';
 import Menu from './pages/Menu';
 import Diary from './pages/Diary';
-import Calendar from './pages/Calendar';
+import Scheduler from './pages/Scheduler';
 import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
@@ -30,7 +30,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<Layout />}>
       <Route index element={<Diary />}></Route>
       <Route path="diary" element={<Diary />}></Route>
-      <Route path="calendar" element={<Calendar />}></Route>
+      <Route path="scheduler" element={<Scheduler />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>

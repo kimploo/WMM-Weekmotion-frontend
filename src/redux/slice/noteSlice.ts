@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 const noteSlice = createSlice({
   name: 'note',
   initialState: {
-    note: '' as string
+    note: {
+      title: '' as string,
+      note: '' as string
+    }
   },
   reducers: {
     change: (state, action) => {
