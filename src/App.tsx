@@ -14,7 +14,6 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
 import After from './pages/After';
-import './index.css';
 
 const Layout = () => {
   return (
