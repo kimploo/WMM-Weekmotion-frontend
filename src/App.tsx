@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux';
-import Menu from './pages/Menu';
 import Diary from './pages/Diary';
 import Calendar from './pages/Calendar';
 import Register from './pages/Register';
