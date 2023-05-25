@@ -24,6 +24,9 @@ module.exports = {
         lightPink: '#FAACD2',
         blue: '#6889FF',
         lightBlue: '#AFBFFA'
+      },
+      fontFamily: {
+        sans: ['Noto Sans', 'sans-serif']
       }
     },
     extend: {}

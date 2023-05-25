@@ -6,6 +6,13 @@ import { Link } from 'react-router-dom';
 import { change } from '../redux/slice/emotionSlice';
 import weekmotion from '../assets/images/weekmotion.svg';
 import { positiveEmotion, negativeEmotion } from '../assets/strings/emotions';
+import {
+  btnYellow,
+  chipsBlue,
+  chipsBlueBorder,
+  chipsPink,
+  chipsPinkBorder
+} from '../assets/customCSS/designSystem';
 
 export default function Before() {
   const [emotion, setEmotion] = useState<string[]>([]);
@@ -33,11 +40,7 @@ export default function Before() {
           {positiveEmotion.map((item: string, index: number) => (
             <div
               key={index}
-              className={
-                emotion.includes(item)
-                  ? 'badge bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer m-1 p-3'
-                  : 'badge badge-outline border-emotion-lightPink text-mono-700 cursor-pointer m-1 p-3'
-              }
+              className={emotion.includes(item) ? chipsPink : chipsPinkBorder}
               onClick={onClick}
             >
               {item}
@@ -48,11 +51,7 @@ export default function Before() {
           {negativeEmotion.map((item: string, index: number) => (
             <div
               key={index}
-              className={
-                emotion.includes(item)
-                  ? 'badge bg-emotion-lightBlue border-emotion-lightBlue cursor-pointer text-mono-700 m-1 p-3'
-                  : 'badge badge-outline border-emotion-lightBlue cursor-pointer text-mono-700 m-1 p-3'
-              }
+              className={emotion.includes(item) ? chipsBlue : chipsBlueBorder}
               onClick={onClick}
             >
               {item}
@@ -60,9 +59,7 @@ export default function Before() {
           ))}
         </div>
         <Link to={'/diary'} onClick={() => dispatch(change(emotion))}>
-          <button className="btn w-full rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
-            일기 쓰러가기
-          </button>
+          <button className={btnYellow}>일기 쓰러가기</button>
         </Link>
       </article>
     </section>
