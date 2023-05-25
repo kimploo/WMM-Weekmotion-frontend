@@ -6,6 +6,7 @@ import { RootState } from '../redux';
 import { positiveEmotion } from '../assets/strings/emotions';
 import { change } from '../redux/slice/noteSlice';
 import { Link } from 'react-router-dom';
+import { btnYellow } from '../assets/customCSS/designSystem';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -34,8 +35,8 @@ export default function Diary() {
   };
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col gap-2 px-16">
-      <div className="py-4">
+    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2 px-5">
+      <div className="">
         {state.emotion.map((item: string, index: number) => (
           <div
             key={index}
@@ -65,14 +66,14 @@ export default function Diary() {
       <textarea
         name="note"
         id="textarea"
-        className="textarea textarea-bordered h-1/2 bg-mono-100 text-mono-700 resize-none"
+        className="textarea textarea-bordered h-1/2 bg-mono-100 text-mono-700 resize-none mb-5"
         onChange={textAreaOnChange}
         placeholder="일기 내용을 작성해주세요."
         required
       />
       <Link to={'/after'}>
         <button
-          className="btn w-full my-4 rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100"
+          className={btnYellow}
           onClick={() => dispatch(change(diaryInfo))}
         >
           다음
