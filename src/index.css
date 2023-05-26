@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-abbr:where([title]) {
-  -webkit-text-decoration: none;
-          text-decoration: none;
-}
+
+@layer base{
+  abbr:where([title]) {
+    -webkit-text-decoration: none;
+            text-decoration: none;
+  }
+} 
+

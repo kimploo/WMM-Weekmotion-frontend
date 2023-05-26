@@ -1,6 +1,6 @@
 .react-calendar {
-  width: 350px;
-  max-width: 100%;
+  /* width: 350px; */
+  /* max-width: 100%; */
   background: white;
   border: none;
   line-height: 1.125em;
@@ -94,7 +94,7 @@
 }
 
 .react-calendar__month-view__days__day--weekend {
-  color: #d10000;
+  /* color: #d10000; */
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -127,12 +127,12 @@
 }
 
 .react-calendar__tile--now {
-  background: #ffff76;
+  /* background: #ffff76; */
 }
 
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: #ffffa9;
+  /* background: #ffffa9; */
 }
 
 .react-calendar__tile--hasActive {
@@ -148,14 +148,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #E20823;
 }
 
+/* 클릭한 기간 시작일 배경 */
 .react-calendar__tile--rangeStart:not(.react-calendar__tile--rangeEnd),
 .react-calendar__tile--hoverStart:not(.react-calendar__tile--hoverEnd) {
   background: linear-gradient(to right, white 50%, #FFE388 50%) !important;
 }
 
+/* startDate와 endDate 사이 배경 */
 .react-calendar__tile--range:not(.react-calendar__tile--rangeStart),
 .react-calendar__tile--range:not(.react-calendar__tile--rangeEnd),
 .react-calendar__tile--hover:not(.react-calendar__tile--hoverStart),
@@ -163,17 +164,20 @@
   background-color: #FFE388 !important;
 }
 
+
+/* 클릭한 기간 마지막일 배경 */
 .react-calendar__tile--rangeEnd:not(.react-calendar__tile--rangeStart),
 .react-calendar__tile--hoverEnd:not(.react-calendar__tile--hoverStart) {
   background: linear-gradient(to right, #FFE388 50%, white 50%) !important;
 }
 
-.wmm-calendar__tile--start > abbr,
-.wmm-calendar__tile--end > abbr,
+/* 클릭한 기간 시작일, 마지막일 원형 표시 */
 .react-calendar__tile--rangeStart > abbr ,
 .react-calendar__tile--rangeEnd > abbr ,
 .react-calendar__tile--hoverStart > abbr ,
 .react-calendar__tile--hoverEnd > abbr {
+  color: #E20823;
+  font-weight: 700;
   background-color: #FFD54A;
   display: inline-flex;
   justify-content: center;
@@ -192,5 +196,3 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
-
-/* react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeEnd react-calendar__month-view__days__day wmm-calendar__tile--middle */

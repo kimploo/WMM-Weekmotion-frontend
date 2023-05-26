@@ -1,14 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import DRP from '@wojtekmaj/react-daterange-picker';
-import {
-  isSameDay,
-  isSameMonth,
-  isSameYear,
-  isAfter,
-  isBefore,
-  startOfDay,
-  endOfDay
-} from 'date-fns';
 
 import type {
   Range,
@@ -20,35 +11,24 @@ import './DateRangePicker.css';
 import { ReactComponent as CalIcon } from '../assets/images/date_range_picker_toggle.svg';
 import { ReactComponent as WMMLogo } from '../assets/images/weekmotion_logo_1.svg';
 
+import RightIcon from '../items/RightIcon';
+import LeftIcon from '../items/LeftIcon';
+
 export default function DateRangePicker() {
   const currentDate = new Date();
   const [value, onChange] = useState<Range<Date>>([currentDate, currentDate]);
 
-  const isSameDMY = (left: Date, right: Date): boolean => {
-    return (
-      isSameDay(left, right) &&
-      isSameMonth(left, right) &&
-      isSameYear(left, right)
-    );
-  };
-
-  const selectedTile: TileClassNameFunc = ({ date, view }) => {
-    if (!value) return;
+  // TODO: useCallback 적용
+  // https://github.com/wojtekmaj/react-calendar/wiki/Recipes#selectively-style-tiles
+  const selectedTile: TileClassNameFunc = ({ activeStartDate, date, view }) => {
     const [start, end] = value;
-
-    if (view === 'month' && start.getMonth() === date.getMonth()) {
-      if (isSameDMY(start, date)) {
-        console.log('start', start.getDate());
-        return 'wmm-calendar__tile--start';
-      }
-      if (isAfter(date, endOfDay(start)) && isBefore(date, startOfDay(end))) {
-        console.log('middle', date.getDate());
-        return 'wmm-calendar__tile--middle';
-      }
-      if (isSameDMY(end, date)) {
-        console.log('end', start.getDate());
-        return 'wmm-calendar__tile--end';
-      }
+    // 해당 달의 날짜가 아닌 경우 흐리게
+    if (view === 'month' && activeStartDate.getMonth() !== date.getMonth()) {
+      return 'opacity-50';
+    }
+    // 일요일 빨간색 표시
+    if (view === 'month' && date.getDay() === 0) {
+      return 'text-[#E20823]';
     }
   };
 
@@ -57,18 +37,20 @@ export default function DateRangePicker() {
       <DRP
         onChange={onChange}
         value={value}
-        name={'wmm-date-range-picker'}
+        isOpen={true}
         calendarType={'US'}
-        calendarIcon={<CalIcon></CalIcon>}
-        clearIcon={<WMMLogo></WMMLogo>}
+        calendarIcon={<CalIcon />}
+        clearIcon={<WMMLogo />}
+        prevLabel={<LeftIcon />}
+        nextLabel={<RightIcon />}
+        prev2Label={null}
+        next2Label={null}
         format={'y.MM.dd'}
         formatDay={(_: any, date: Date) => date.getDate()}
         tileClassName={selectedTile}
+        portalContainer={document.getElementById('wmm-portal')}
       ></DRP>
+      <div id="wmm-portal"></div>
     </>
   );
 }
-// .react-calendar__tile--rangeStart,
-// .react-calendar__tile--hoverStart {
-//   background: linear-gradient(to right, white 50%, #FFE388 50%) !important;
-// }
