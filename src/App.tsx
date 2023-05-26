@@ -8,12 +8,13 @@ import {
 import { Provider } from 'react-redux';
 import store from './redux';
 import Diary from './pages/Diary';
-import Calendar from './pages/Calendar';
+import Scheduler from './pages/Scheduler';
 import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
 import After from './pages/After';
 import ListTest from './pages/ListTest';
+import Post from './pages/Post';
 
 const Layout = () => {
   return (
@@ -27,13 +28,14 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Diary />}></Route>
+      <Route index element={<Scheduler />}></Route>
       <Route path="diary" element={<Diary />}></Route>
-      <Route path="calendar" element={<Calendar />}></Route>
+      <Route path="scheduler" element={<Scheduler />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>
       <Route path="list-test" element={<ListTest />}></Route>
+      <Route path="post" element={<Post />}></Route>
     </Route>
   )
 );

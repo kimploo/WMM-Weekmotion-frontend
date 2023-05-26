@@ -29,7 +29,7 @@ export default function After() {
       <div className="py-4">
         <img src={weekmotion} alt="main_logo" />
       </div>
-      <article className="w-1/2">
+      <article className="w-4/5">
         <h1 className="text-2xl text-mono-700 font-bold">
           일기를 쓰고 난 후,
           <br />
@@ -65,7 +65,7 @@ export default function After() {
             </div>
           ))}
         </div>
-        <Link to={'/calendar'} onClick={() => dispatch(change(emotion))}>
+        <Link to={'/post'} onClick={() => dispatch(change(emotion))}>
           <button className="btn w-full rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
             감정 선택하기
           </button>

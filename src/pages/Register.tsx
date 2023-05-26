@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import weekmotion from '../assets/images/weekmotion.svg';
 
 export default function Register() {
-  const [sign, setSign] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams({ view: 'signIn' });
   const [signInInfo, setSignInInfo] = useState({
     id: '',
     pw: ''
@@ -35,7 +36,7 @@ export default function Register() {
 
   return (
     <section className="bg-mono-100 h-screen flex flex-col items-center">
-      {sign ? (
+      {searchParams.get('view') === 'signUp' ? (
         <>
           <article className="form-control w-1/2 py-4">
             <h1 className="text-2xl text-mono-700 font-bold">회원가입</h1>
@@ -105,7 +106,7 @@ export default function Register() {
               가입하기
             </button>
             <button
-              onClick={() => setSign(!sign)}
+              onClick={() => setSearchParams({ view: 'signIn' })}
               className="btn btn-wide w-full rounded-full bg-mono-100 hover:bg-mono-100 border-emotion-yellow hover:border-emotion-yellow text-emotion-yellow"
             >
               돌아가기
@@ -147,7 +148,7 @@ export default function Register() {
               로그인
             </button>
             <button
-              onClick={() => setSign(!sign)}
+              onClick={() => setSearchParams({ view: 'signUp' })}
               className="btn btn-wide w-full rounded-full bg-mono-100 hover:bg-mono-100 border-emotion-yellow hover:border-emotion-yellow text-emotion-yellow"
             >
               회원가입
