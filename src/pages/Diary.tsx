@@ -11,16 +11,30 @@ import {
   chipsBlue,
   chipsPink
 } from '../assets/customCSS/designSystem';
+import calendar from '../assets/images/calendar.svg';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
     title: '',
-    note: ''
+    note: '',
+    date: new Date()
+      .toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      })
+      .split(' ')
+      .join('')
+      .slice(0, -1)
   });
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => {
     return state.emotion;
   });
+
+  React.useEffect(() => {
+    console.log(diaryInfo.date);
+  }, []);
 
   const titleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -40,7 +54,11 @@ export default function Diary() {
 
   return (
     <section className="bg-mono-100 w-full h-screen flex flex-col gap-2 px-5">
-      <div className="">
+      <div className="flex gap-x-[11px]">
+        <img src={calendar} alt="calendar_icon" />
+        <p className="text-mono-700 text-2xl font-bold">{diaryInfo.date}</p>
+      </div>
+      <div>
         {state.emotion.map((item: string, index: number) => (
           <div
             key={index}

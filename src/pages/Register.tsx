@@ -6,7 +6,6 @@ import weekmotion from '../assets/images/weekmotion.svg';
 
 export default function Register() {
   const [searchParams, setSearchParams] = useSearchParams({ view: 'signIn' });
-  const [sign, setSign] = useState<boolean>(false);
   const [signInInfo, setSignInInfo] = useState({
     id: '',
     pw: ''

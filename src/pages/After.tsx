@@ -65,7 +65,7 @@ export default function After() {
             </div>
           ))}
         </div>
-        <Link to={'/calendar'} onClick={() => dispatch(change(emotion))}>
+        <Link to={'/post'} onClick={() => dispatch(change(emotion))}>
           <button className="btn w-full rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
             감정 선택하기
           </button>
