@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
 import After from './pages/After';
+import ListTest from './pages/ListTest';
 import Post from './pages/Post';
 
 const Layout = () => {
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>
+      <Route path="list-test" element={<ListTest />}></Route>
       <Route path="post" element={<Post />}></Route>
     </Route>
   )

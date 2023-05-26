@@ -1,7 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
 
-import Calendar from 'react-calendar';
-import '../assets/customCSS/calendar.css';
 import {
   tab,
   tabActive,
@@ -14,7 +12,11 @@ import checkBoxChecked from '../assets/images/checkBoxSelected.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 import { useState } from 'react';
 
+import WMMCalendar from '../components/WMMCalendar';
+
 export default function Schduler() {
+  const currentDate = new Date();
+  const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
   const [isChecked, setIsChecked] = useState(true);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
@@ -93,14 +95,7 @@ export default function Schduler() {
         </div>
       </div>
       {tabParams.get('tab') === 'calendar' ? (
-        <Calendar
-          formatDay={(locale, date) => {
-            return date.toLocaleDateString('en-US', {
-              day: 'numeric'
-            });
-          }}
-          className="text-mono-700"
-        />
+        <WMMCalendar value={value} onChange={onChange} />
       ) : (
         <div>List here</div>
       )}
