@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import weekmotionTitle from '../assets/images/weekmotion_title.svg';
-import hamburger from '../assets/images/hamburger.svg';
+import trash from '../assets/images/trash.svg';
+import add from '../assets/images/add.svg';
 
 export default function Nav() {
   return (
@@ -11,8 +12,11 @@ export default function Nav() {
           <img src={weekmotionTitle} alt="title" />
         </Link>
       </div>
-      <div className="flex-none pr-4">
-        <img src={hamburger} alt="menu" className="cursor-pointer" />
+      <div className="flex-none pr-4 gap-6">
+        <img src={trash} alt="trash" className="cursor-pointer" />
+        <Link to={'/before'}>
+          <img src={add} alt="add" className="cursor-pointer" />
+        </Link>
       </div>
     </div>
   );

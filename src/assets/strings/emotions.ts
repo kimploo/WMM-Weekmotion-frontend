@@ -22,3 +22,4 @@ export const negativeEmotion: string[] = [
   '불편',
   '외로움'
 ];
+export const blankEmotion: string[] = ['모르겠음', '부끄러움'];
