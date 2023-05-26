@@ -6,7 +6,11 @@ import { RootState } from '../redux';
 import { positiveEmotion } from '../assets/strings/emotions';
 import { change } from '../redux/slice/noteSlice';
 import { Link } from 'react-router-dom';
-import { btnYellow } from '../assets/customCSS/designSystem';
+import {
+  btnYellow,
+  chipsBlue,
+  chipsPink
+} from '../assets/customCSS/designSystem';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -40,11 +44,7 @@ export default function Diary() {
         {state.emotion.map((item: string, index: number) => (
           <div
             key={index}
-            className={
-              positiveEmotion.includes(item)
-                ? 'badge bg-emotion-lightPink border-emotion-lightPink text-mono-700 m-1 p-3'
-                : 'badge bg-emotion-lightBlue border-emotion-lightBlue  text-mono-700 m-1 p-3'
-            }
+            className={positiveEmotion.includes(item) ? chipsPink : chipsBlue}
           >
             {item}
           </div>

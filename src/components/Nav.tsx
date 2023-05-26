@@ -14,7 +14,9 @@ export default function Nav() {
       </div>
       <div className="flex-none pr-4 gap-6">
         <img src={trash} alt="trash" className="cursor-pointer" />
-        <img src={add} alt="add" className="cursor-pointer" />
+        <Link to={'/before'}>
+          <img src={add} alt="add" className="cursor-pointer" />
+        </Link>
       </div>
     </div>
   );

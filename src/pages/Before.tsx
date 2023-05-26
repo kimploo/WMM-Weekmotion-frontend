@@ -32,7 +32,7 @@ export default function Before() {
       <div className="py-4">
         <img src={weekmotion} alt="main_logo" />
       </div>
-      <article className="w-1/2">
+      <article className="w-4/5">
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>
