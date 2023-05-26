@@ -32,10 +32,6 @@ export default function Diary() {
     return state.emotion;
   });
 
-  React.useEffect(() => {
-    console.log(diaryInfo.date);
-  }, []);
-
   const titleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setDiaryInfo({
