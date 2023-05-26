@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import '../assets/customCSS/calendar.css';
 import { useEffect } from 'react';
+import { tab, tabActive } from '../assets/customCSS/designSystem';
 
 export default function Schduler() {
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
@@ -13,21 +14,13 @@ export default function Schduler() {
     <section className="h-screen bg-mono-100">
       <div className="w-full h-14 flex justify-around items-center">
         <button
-          className={
-            tabParams.get('tab') === 'calendar'
-              ? 'text-lg w-1/2 h-full text-emotion-yellow border-b-4 border-emotion-yellow'
-              : 'text-lg w-1/2 h-full text-mono-400'
-          }
+          className={tabParams.get('tab') === 'calendar' ? tabActive : tab}
           onClick={() => setTabParams({ tab: 'calendar' })}
         >
           캘린더
         </button>
         <button
-          className={
-            tabParams.get('tab') === 'list'
-              ? 'text-lg w-1/2 h-full text-emotion-yellow border-b-4 border-emotion-yellow'
-              : 'text-lg w-1/2 h-full text-mono-400'
-          }
+          className={tabParams.get('tab') === 'list' ? tabActive : tab}
           onClick={() => setTabParams({ tab: 'list' })}
         >
           목록
