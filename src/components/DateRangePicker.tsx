@@ -6,8 +6,7 @@ import type {
   TileClassNameFunc
 } from 'react-calendar/dist/cjs/shared/types';
 
-import './Calendar.css';
-import './DateRangePicker.css';
+import './DateRangePickerCalendar.css';
 import { ReactComponent as CalIcon } from '../assets/images/date_range_picker_toggle.svg';
 import { ReactComponent as WMMLogo } from '../assets/images/weekmotion_logo_1.svg';
 
@@ -46,11 +45,10 @@ export default function DateRangePicker() {
         prev2Label={null}
         next2Label={null}
         format={'y.MM.dd'}
+        className={'wmm-date-range-picker'}
         formatDay={(_: any, date: Date) => date.getDate()}
         tileClassName={selectedTile}
-        portalContainer={document.getElementById('wmm-portal')}
       ></DRP>
-      <div id="wmm-portal"></div>
     </>
   );
 }
