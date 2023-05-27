@@ -1,7 +1,7 @@
 import { toast } from '@kimploo/react-toastify';
 import axios from 'axios';
 import { useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
 import {
   btnYellow,
   btnYellowBorder,
@@ -9,6 +9,8 @@ import {
   smBtnYellowBorder
 } from '../assets/customCSS/designSystem';
 import closeIcon from '../assets/images/closeIcon.svg';
+import backIcon from '../assets/images/back.svg';
+import editIcon from '../assets/images/edit.svg';
 import DiaryPost from '../components/DiaryPost';
 import { BASE_URL } from '../redux/function/url';
 
@@ -33,12 +35,22 @@ export default function TrashPost() {
       }
     } catch (error) {
       console.error(error);
-      toast('문제가 생겼어요.');
+      toast.error('문제가 생겼어요.');
     }
   };
 
   return (
     <section className="bg-mono-100 h-screen flex flex-col p-5">
+      <nav className="h-12 flex justify-between items-center">
+        <button onClick={() => navigate(-1)}>
+          <img src={backIcon} alt="back_icon" />
+        </button>
+        <Link to={`/edit/${params.id}`}>
+          <button>
+            <img src={editIcon} alt="edit_icon" />
+          </button>
+        </Link>
+      </nav>
       <DiaryPost params={params.id} />
       <div className="pt-10">
         <button className={`${btnYellow} mb-4`}>감정을 캘린더로 보내기</button>

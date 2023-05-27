@@ -50,7 +50,6 @@ export default function Post() {
           }
         }
       );
-      console.dir(response);
       if (response.status === 201) {
         if (category === 'calendar') {
           navigate('/scheduler');
