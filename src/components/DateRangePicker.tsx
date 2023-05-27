@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import DRP from '@wojtekmaj/react-daterange-picker';
 
 import type {
@@ -34,7 +34,7 @@ export default function DateRangePicker() {
   return (
     <>
       <DRP
-        onChange={onChange}
+        // onChange={onChange}
         value={value}
         isOpen={true}
         calendarType={'US'}
