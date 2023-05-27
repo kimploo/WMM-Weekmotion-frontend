@@ -33,7 +33,11 @@ export default function Scheduler() {
     <section className="h-screen bg-mono-100">
       <div className="w-full h-14 flex justify-around items-center">
         <button
-          className={tabParams.get('tab') === 'calendar' ? tabActive : tab}
+          className={
+            tabParams.get('tab') === 'calendar'
+              ? 'text-lg w-1/2 h-full text-emotion-yellow border-b-4 border-emotion-yellow'
+              : 'text-lg w-1/2 h-full text-mono-400 border-b-[1px] border-mono-300'
+          }
           onClick={() => setTabParams({ tab: 'calendar' })}
         >
           캘린더

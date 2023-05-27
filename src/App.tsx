@@ -17,7 +17,7 @@ import ListTest from './pages/dev/ListTest';
 import Post from './pages/Post';
 import SplashScreen from './pages/SplashScreen';
 import TestToast from './pages/dev/TestToast';
-
+import Loading from './pages/Loading';
 import { ToastContainer } from '@kimploo/react-toastify';
 // import './toast.css';
 import '@kimploo/react-toastify/dist/ReactToastify.css';
@@ -30,7 +30,7 @@ const Layout = () => {
   return (
     <>
       <Nav></Nav>
-      <div className="mx-5">
+      <div className="px-5 bg-mono-100">
         <Outlet></Outlet>
       </div>
       <ToastContainer
@@ -52,7 +52,7 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Scheduler />}></Route>
+      <Route index element={<Loading />}></Route>
       <Route path="diary" element={<Diary />}></Route>
       <Route path="scheduler" element={<Scheduler />}></Route>
       <Route path=":id" element={<SchedulerPost />}></Route>

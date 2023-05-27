@@ -39,7 +39,7 @@ export default function Post() {
         {
           title: data.note.title,
           contents: data.note.note,
-          calendarYn: category === 'calendar' ? 'Y' : 'N',
+          calenderYn: category === 'calendar' ? 'Y' : 'N',
           tagSeq: emotion.emotion.map((item: tag) => {
             return item.seq;
           })

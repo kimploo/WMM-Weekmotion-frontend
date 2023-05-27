@@ -7,6 +7,7 @@ import { diary, diaryTag } from '../redux/types';
 import emotion_positive from '../assets/images/emotion_positive.svg';
 import emotion_negative from '../assets/images/emotion_negative.svg';
 import emotion_etc from '../assets/images/emotion_etc.svg';
+import { toast } from '@kimploo/react-toastify';
 
 export default function List({
   yearMonth = new Date()
@@ -39,14 +40,14 @@ export default function List({
   yearMonth: string;
   date: string[];
 }) {
-  const [diary, setDiary] = useState([]);
+  const [diary, setDiary] = useState<diary[]>([]);
   const location = useLocation();
 
   const requestDiary = async () => {
     try {
       const response = await axios.get(`${BASE_URL}/diary`, {
         params: {
-          calendarYn: location.pathname === '/trash' ? 'N' : 'Y',
+          calenderYn: location.pathname === '/trash' ? 'N' : 'Y',
           yearMonth: yearMonth,
           fromDate: date[0],
           toDate: date[1]
@@ -58,6 +59,7 @@ export default function List({
       setDiary(response.data.data);
     } catch (error) {
       console.error(error);
+      toast.error('데이터를 불러오지 못했어요.');
     }
   };
 

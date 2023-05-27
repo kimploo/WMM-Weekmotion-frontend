@@ -17,6 +17,7 @@ import {
   chipsYellow,
   chipsYellowBorder
 } from '../assets/customCSS/designSystem';
+import { toast } from '@kimploo/react-toastify';
 
 export default function After() {
   const state = useSelector((state: RootState) => {
@@ -79,8 +80,8 @@ export default function After() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsPink
-                    : chipsPinkBorder
+                    ? 'badge h-7 bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightPink text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -98,8 +99,8 @@ export default function After() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsBlue
-                    : chipsBlueBorder
+                    ? 'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -117,8 +118,8 @@ export default function After() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsYellow
-                    : chipsYellowBorder
+                    ? 'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -126,7 +127,16 @@ export default function After() {
               </div>
             ))}
         </div>
-        <Link to={'/post'} onClick={() => dispatch(change(checkedEmotion))}>
+        <Link
+          to={'/post'}
+          onClick={(event) => {
+            if (checkedEmotion.length === 0) {
+              event.preventDefault();
+              toast.error('하나 이상의 감정을 선택해주세요.');
+            }
+            dispatch(change(checkedEmotion));
+          }}
+        >
           <button className="btn w-full rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
             감정 선택하기
           </button>

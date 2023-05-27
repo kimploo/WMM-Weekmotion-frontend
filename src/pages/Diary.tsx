@@ -5,13 +5,10 @@ import { RootState } from '../redux';
 
 import { change } from '../redux/slice/noteSlice';
 import { Link } from 'react-router-dom';
-import {
-  btnYellow,
-  chipsBlue,
-  chipsPink
-} from '../assets/customCSS/designSystem';
+import { btnYellow, chipsColorPicker } from '../assets/customCSS/designSystem';
 import calendar from '../assets/images/calendar.svg';
 import { tag } from '../redux/types';
+import { toast } from '@kimploo/react-toastify';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -54,12 +51,9 @@ export default function Diary() {
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">{diaryInfo.date}</p>
       </div>
-      <div>
+      <div className="flex gap-x-2">
         {state.emotion.map((item: tag, index: number) => (
-          <div
-            key={index}
-            className={item.tagCategory.seq === '1' ? chipsPink : chipsBlue}
-          >
+          <div key={index} className={chipsColorPicker(item.tagCategory.seq)}>
             {item.tagName}
           </div>
         ))}
@@ -85,7 +79,15 @@ export default function Diary() {
         placeholder="일기 내용을 작성해주세요."
         required
       />
-      <Link to={'/after'}>
+      <Link
+        to={'/after'}
+        onClick={(event) => {
+          if (diaryInfo.title.length === 0 || diaryInfo.note.length === 0) {
+            event.preventDefault();
+            toast.error('제목이나 일기 내용을 작성해주세요.');
+          }
+        }}
+      >
         <button
           className={btnYellow}
           onClick={() => dispatch(change(diaryInfo))}

@@ -40,8 +40,8 @@ export default function TrashPost() {
   };
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col p-5">
-      <nav className="h-12 flex justify-between items-center">
+    <section className="bg-mono-100 h-screen flex flex-col">
+      <nav className="w-full h-12 flex justify-between items-center">
         <button onClick={() => navigate(-1)}>
           <img src={backIcon} alt="back_icon" />
         </button>
