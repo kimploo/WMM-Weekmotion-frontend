@@ -26,7 +26,9 @@ const Layout = () => {
   return (
     <>
       <Nav></Nav>
-      <Outlet></Outlet>
+      <div className="mx-5">
+        <Outlet></Outlet>
+      </div>
       <ToastContainer
         position="bottom-right"
         autoClose={5000}

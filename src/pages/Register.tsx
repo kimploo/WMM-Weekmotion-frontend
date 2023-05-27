@@ -2,10 +2,10 @@ import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from '@kimploo/react-toastify';
 import weekmotion from '../assets/images/weekmotion.svg';
 import { BASE_URL } from '../redux/function/url';
+import Input from '../components/Input';
 
 export default function Register() {
   const [searchParams, setSearchParams] = useSearchParams({ view: 'signIn' });
@@ -186,30 +186,24 @@ export default function Register() {
           <div className="py-4">
             <img src={weekmotion} alt="main_logo" />
           </div>
-          <article className="form-control w-1/2">
+          <article className="form-control w-full">
             <h1 className="text-2xl text-mono-700 font-bold">로그인</h1>
-            <label htmlFor="id" className="label">
-              <span className="label-text">ID</span>
-            </label>
-            <input
-              type="text"
-              name="id"
-              placeholder="아이디를 입력하세요."
-              onChange={signInInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
-            <label htmlFor="pw" className="label">
-              <span className="label-text">PASSWORD</span>
-            </label>
-            <input
-              type="password"
-              name="pw"
-              placeholder="비밀번호를 입력하세요."
-              onChange={signInInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
+            <div className="mt-5">
+              <Input
+                label="ID"
+                type="text"
+                placeholder="아이디를 입력하세요."
+                onChange={signInInfoOnChange}
+              ></Input>
+            </div>
+            <div className="mt-4">
+              <Input
+                label="PASSWORD"
+                type="password"
+                placeholder="비밀번호를 입력하세요."
+                onChange={signInInfoOnChange}
+              ></Input>
+            </div>
           </article>
           <div className="flex flex-col gap-4 py-4 w-1/2">
             <button
