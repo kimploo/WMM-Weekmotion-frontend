@@ -45,6 +45,7 @@ export default function Register() {
         password: signInInfo.pw
       });
       if (response.status === 201) {
+        localStorage.setItem('jwt', response.data.data.accessToken);
         navigate('/scheduler');
       }
     } catch (error) {
@@ -57,13 +58,14 @@ export default function Register() {
       const response = await axios.get(
         `${BASE_URL}/user/check/id/${signUpInfo.id}`
       );
-      if (response.data.duplication === false) {
+      if (response.data.data.duplication === false) {
         setSignUpInfo({ ...signUpInfo, verify_id: true });
+        toast.success('사용 가능한 아이디입니다.');
       } else {
-        throw new Error('Error!');
+        throw new Error('중복된 아이디가 존재합니다.');
       }
-    } catch (error) {
-      toast.error('Error!');
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -74,13 +76,13 @@ export default function Register() {
           id: signUpInfo.id,
           password: signUpInfo.pw,
           name: signUpInfo.name,
+          email: undefined,
           phone: signUpInfo.tel
         });
         if (response.status === 201) {
           setSearchParams({ view: 'signIn' });
+          toast.success('회원가입이 완료되었어요!');
         }
-      } else {
-        throw new Error('Error!');
       }
     } catch (error) {
       toast.error('Error!');
