@@ -1,6 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
-import Calendar from 'react-calendar';
 import '../assets/customCSS/calendar.css';
 import {
   tab,
@@ -14,6 +13,7 @@ import checkBoxChecked from '../assets/images/checkBoxSelected.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 
 import WMMCalendar from '../components/WMMCalendar';
+import { ToastContainer } from 'react-toastify';
 
 export default function Schduler() {
   const currentDate = new Date();
@@ -100,6 +100,12 @@ export default function Schduler() {
       ) : (
         <div>List here</div>
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeOnClick
+      />
     </section>
   );
 }
