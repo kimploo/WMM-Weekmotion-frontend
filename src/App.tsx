@@ -19,6 +19,7 @@ import SplashScreen from './pages/SplashScreen';
 import TestToast from './pages/dev/TestToast';
 
 import { ToastContainer } from '@kimploo/react-toastify';
+// import './toast.css';
 import '@kimploo/react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
