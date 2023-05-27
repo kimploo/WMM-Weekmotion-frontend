@@ -1,15 +1,19 @@
 interface Props {
+  name: string;
   label: string;
   type?: string;
   value?: string;
   placeholder: string;
+  required: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export default function Input({
+  name,
   label,
   type = 'text',
   value,
+  required,
   placeholder,
   onChange
 }: Props) {
@@ -24,9 +28,10 @@ export default function Input({
       <input
         className="block w-full pl-4 h-14 border-2 border-transparent appearance-none bg-transparent"
         type={type}
-        name={label}
+        name={name}
         onChange={onChange}
         placeholder={placeholder}
+        required={required}
       />
     </div>
   );

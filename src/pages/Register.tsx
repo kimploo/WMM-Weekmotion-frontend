@@ -92,73 +92,83 @@ export default function Register() {
 
   return (
     <section className="bg-mono-100 h-screen flex flex-col items-center">
+      {/* TODO: Form 엘리먼트 적용 */}
+      {/* {import.meta.env.DEV ? (
+        <>
+          <button onClick={() => setSearchParams({ view: 'signIn' })}>
+            signIn
+          </button>
+          <button onClick={() => setSearchParams({ view: 'signUp' })}>
+            signUp
+          </button>
+        </>
+      ) : null} */}
       {searchParams.get('view') === 'signUp' ? (
         <>
-          <article className="form-control w-1/2 py-4">
+          <article className="form-control">
             <h1 className="text-2xl text-mono-700 font-bold">회원가입</h1>
-            <div>
-              <label htmlFor="id" className="label">
-                <span className="label-text">ID</span>
-              </label>
-              <input
-                type="text"
-                name="id"
-                placeholder="아이디를 입력하세요."
-                onChange={signUpInfoOnChange}
-                required
-                className="input input-bordered w-1/2 bg-mono-100 text-mono-700"
-              />
-              <button
-                onClick={checkIdRequest}
-                className="btn ml-4 rounded-full  text-mono-100 bg-emotion-yellow border-emotion-yellow"
-              >
-                중복확인
-              </button>
+            <div className="mt-5 flex justify-between flex-wrap gap-2">
+              <div className="flex justify-center items-center flex-grow ">
+                <div className="flex-grow">
+                  <Input
+                    type="text"
+                    name="id"
+                    label="ID"
+                    placeholder="아이디를 입력하세요."
+                    onChange={signUpInfoOnChange}
+                    required={true}
+                  ></Input>
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <button
+                  onClick={checkIdRequest}
+                  className="btn rounded-full text-mono-100 bg-emotion-yellow border-emotion-yellow"
+                >
+                  중복확인
+                </button>
+              </div>
             </div>
-            <label htmlFor="pw" className="label">
-              <span className="label-text">PASSWORD</span>
-            </label>
-            <input
-              type="password"
-              name="pw"
-              placeholder="비밀번호를 입력하세요."
-              onChange={signUpInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
-            <label htmlFor="verify_pw" className="label">
-              <span className="label-text">PASSWORD</span>
-            </label>
-            <input
-              type="password"
-              name="verify_pw"
-              placeholder="비밀번호를 다시 한번 입력하세요."
-              onChange={signUpInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
-            <label htmlFor="name" className="label">
-              <span className="label-text">이름</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="이름를 입력하세요."
-              onChange={signUpInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
-            <label htmlFor="tel" className="label">
-              <span className="label-text">휴대폰 번호</span>
-            </label>
-            <input
-              type="tel"
-              name="tel"
-              placeholder="휴대폰 번호를 숫자만 입력해주세요."
-              onChange={signUpInfoOnChange}
-              required
-              className="input input-bordered bg-mono-100 text-mono-700"
-            />
+            <div className="mt-4">
+              <Input
+                type="password"
+                name="pw"
+                label="PASSWORD"
+                placeholder="비밀번호를 입력하세요."
+                onChange={signUpInfoOnChange}
+                required={true}
+              ></Input>
+            </div>
+            <div className="mt-4">
+              <Input
+                type="password"
+                name="verify_pw"
+                label="PASSWORD"
+                placeholder="비밀번호를 다시 한번 입력하세요."
+                onChange={signUpInfoOnChange}
+                required={true}
+              ></Input>
+            </div>
+            <div className="mt-4">
+              <Input
+                type="text"
+                name="name"
+                label="이름"
+                placeholder="이름을 입력하세요."
+                onChange={signUpInfoOnChange}
+                required={true}
+              ></Input>
+            </div>
+            <div className="mt-4">
+              <Input
+                type="tel"
+                name="tel"
+                label="휴대폰 번호"
+                placeholder="휴대폰 번호를 숫자만 입력해주세요."
+                onChange={signUpInfoOnChange}
+                required={true}
+              ></Input>
+            </div>
           </article>
           <div className="flex flex-col gap-4 py-4 w-1/2">
             <button
@@ -190,18 +200,22 @@ export default function Register() {
             <h1 className="text-2xl text-mono-700 font-bold">로그인</h1>
             <div className="mt-5">
               <Input
+                name="id"
                 label="ID"
                 type="text"
                 placeholder="아이디를 입력하세요."
                 onChange={signInInfoOnChange}
+                required={true}
               ></Input>
             </div>
             <div className="mt-4">
               <Input
+                name="pw"
                 label="PASSWORD"
                 type="password"
                 placeholder="비밀번호를 입력하세요."
                 onChange={signInInfoOnChange}
+                required={true}
               ></Input>
             </div>
           </article>
