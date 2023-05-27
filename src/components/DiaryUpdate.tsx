@@ -23,7 +23,7 @@ export default function DiaryUpdate({ params }: { params: string }) {
       });
       setPost(response.data.data);
     } catch (error) {
-      toast('해당 일기를 불러오지 못했어요.');
+      toast.error('해당 일기를 불러오지 못했어요.');
     }
   };
   // 업데이트 동작 안됨
@@ -89,10 +89,6 @@ export default function DiaryUpdate({ params }: { params: string }) {
   useEffect(() => {
     requestPost();
   }, []);
-
-  useEffect(() => {
-    console.log(updateInfo);
-  }, [updateInfo]);
 
   return (
     <div>

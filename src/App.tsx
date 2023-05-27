@@ -55,7 +55,8 @@ const router = createBrowserRouter(
       <Route index element={<Scheduler />}></Route>
       <Route path="diary" element={<Diary />}></Route>
       <Route path="scheduler" element={<Scheduler />}></Route>
-      <Route path="/:id" element={<SchedulerPost />}></Route>
+      <Route path=":id" element={<SchedulerPost />}></Route>
+      <Route path="scheduler/:id" element={<SchedulerPost />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>

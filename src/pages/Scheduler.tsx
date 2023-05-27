@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../assets/customCSS/calendar.css';
 import {
   tab,
@@ -20,8 +20,14 @@ export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('today') !== 'checked') {
+      setIsChecked(true);
+    }
+  }, []);
 
   return (
     <section className="h-screen bg-mono-100">
@@ -86,7 +92,12 @@ export default function Scheduler() {
             <label
               htmlFor="my-modal-3"
               className={smBtnYellowBorder}
-              onClick={() => setIsChecked(!isChecked)}
+              onClick={() => {
+                if (isCheckedToday) {
+                  localStorage.setItem('today', 'checked');
+                }
+                setIsChecked(!isChecked);
+              }}
             >
               안할래요
             </label>
