@@ -17,7 +17,6 @@ import ListTest from './pages/dev/ListTest';
 import Post from './pages/Post';
 import SplashScreen from './pages/SplashScreen';
 import TestToast from './pages/dev/TestToast';
-
 import { ToastContainer } from '@kimploo/react-toastify';
 // import './toast.css';
 import '@kimploo/react-toastify/dist/ReactToastify.css';

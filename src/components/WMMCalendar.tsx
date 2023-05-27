@@ -3,17 +3,23 @@ import RightIcon from '../items/RightIcon';
 import LeftIcon from '../items/LeftIcon';
 import { ReactComponent as WMMLogo } from '../assets/images/weekmotion_logo_1.svg';
 import { format } from 'date-fns';
-import { TileClassNameFunc } from 'react-calendar/dist/cjs/shared/types';
+import {
+  TileArgs,
+  TileClassNameFunc,
+  TileContentFunc
+} from 'react-calendar/dist/cjs/shared/types';
 import './WMMCalendar.css';
 import CalendarDropdownIcon from '../items/CalendarDropdownIcon';
 import WMMCalendarTile from './WMMCalendarTile';
+import { TagCategorySeq, diary } from '../redux/types';
 
 interface Props {
   value: Date;
   onChange: React.Dispatch<React.SetStateAction<Date>>;
+  diaries: diary[];
 }
 
-export default function WMMCalendar({ value, onChange }: Props) {
+export default function WMMCalendar({ value, onChange, diaries }: Props) {
   const tileClassName: TileClassNameFunc = ({
     activeStartDate,
     date,
@@ -52,7 +58,17 @@ export default function WMMCalendar({ value, onChange }: Props) {
           day: 'numeric'
         });
       }}
-      tileContent={<WMMCalendarTile />}
+      tileContent={
+        diaries ? (
+          (tileArgs: TileArgs): TileContentFunc => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            return <WMMCalendarTile diaries={diaries} tileArgs={tileArgs} />;
+          }
+        ) : (
+          <></>
+        )
+      }
       tileClassName={tileClassName}
       // className="text-mono-700"
     />
