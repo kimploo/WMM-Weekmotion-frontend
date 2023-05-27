@@ -64,14 +64,18 @@ export default function Before() {
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>
-        <div className="flex my-4 gap-2">
+        <div className="flex flex-wrap my-4 gap-2">
           {emotion
             .filter((data) => data.tagCategory.seq === '1')
             .map((item: tag, index: number) => (
               <div
                 key={index}
                 className={
-                  checkedEmotion.includes(item) ? chipsPink : chipsPinkBorder
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
+                    ? chipsPink
+                    : chipsPinkBorder
                 }
                 onClick={onClick}
               >
@@ -79,14 +83,18 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex my-4 gap-2">
+        <div className="flex flex-wrap my-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '2')
             .map((item: tag, index: number) => (
               <div
                 key={index}
                 className={
-                  checkedEmotion.includes(item) ? chipsBlue : chipsBlueBorder
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
+                    ? chipsBlue
+                    : chipsBlueBorder
                 }
                 onClick={onClick}
               >
@@ -94,14 +102,16 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex my-4 gap-2">
+        <div className="flex flex-wrap my-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '3')
             .map((item: tag, index: number) => (
               <div
                 key={index}
                 className={
-                  checkedEmotion.includes(item)
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
                     ? chipsYellow
                     : chipsYellowBorder
                 }
