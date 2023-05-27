@@ -34,7 +34,7 @@ export default function WMMCalendar({ value, onChange }: Props) {
     <Calendar
       value={value}
       className={'wmm-calendar-view'}
-      onChange={onChange}
+      // onChange={onChange}
       navigationLabel={({ date, label, locale, view }) => (
         <div className="flex justify-center">
           <WMMLogo />

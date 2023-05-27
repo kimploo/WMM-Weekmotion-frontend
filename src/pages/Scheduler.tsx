@@ -15,7 +15,7 @@ import closeIcon from '../assets/images/closeIcon.svg';
 import WMMCalendar from '../components/WMMCalendar';
 import { ToastContainer } from 'react-toastify';
 
-export default function Schduler() {
+export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });

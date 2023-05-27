@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import DRP from '@wojtekmaj/react-daterange-picker';
 
 import type {
@@ -34,7 +34,7 @@ export default function DateRangePicker() {
   return (
     <>
       <DRP
-        onChange={onChange}
+        // onChange={onChange}
         value={value}
         isOpen={true}
         calendarType={'US'}
@@ -46,7 +46,7 @@ export default function DateRangePicker() {
         next2Label={null}
         format={'y.MM.dd'}
         className={'wmm-date-range-picker'}
-        formatDay={(_: any, date: Date) => date.getDate()}
+        formatDay={(_: never, date: Date) => date.getDate()}
         tileClassName={selectedTile}
       ></DRP>
     </>

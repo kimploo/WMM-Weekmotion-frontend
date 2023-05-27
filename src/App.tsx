@@ -13,14 +13,32 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
 import After from './pages/After';
-import ListTest from './pages/ListTest';
+import ListTest from './pages/dev/ListTest';
 import Post from './pages/Post';
+import SplashScreen from './pages/SplashScreen';
+import TestInput from './pages/dev/TestInput';
+import TestToast from './pages/dev/TestToast';
+
+import { ToastContainer } from '@kimploo/react-toastify';
+import '@kimploo/react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
     <>
       <Nav></Nav>
       <Outlet></Outlet>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };
@@ -36,6 +54,18 @@ const router = createBrowserRouter(
       <Route path="after" element={<After />}></Route>
       <Route path="list-test" element={<ListTest />}></Route>
       <Route path="post" element={<Post />}></Route>
+      {import.meta.env.DEV ? (
+        <Route path="test/list" element={<ListTest />}></Route>
+      ) : null}
+      {import.meta.env.DEV ? (
+        <Route path="test/splash" element={<SplashScreen />}></Route>
+      ) : null}
+      {import.meta.env.DEV ? (
+        <Route path="test/input" element={<TestInput />}></Route>
+      ) : null}
+      {import.meta.env.DEV ? (
+        <Route path="test/toast" element={<TestToast />}></Route>
+      ) : null}
     </Route>
   )
 );
@@ -47,7 +77,7 @@ if (import.meta.hot) {
 export default function App() {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />
+      <RouterProvider router={router} fallbackElement={<SplashScreen />} />
     </Provider>
   );
 }
