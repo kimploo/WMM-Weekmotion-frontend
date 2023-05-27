@@ -12,18 +12,24 @@ export interface signInInfo {
   pw: string;
 }
 
+export enum TagCategorySeq {
+  POSITIVE = '1',
+  NEGATIVE = '2',
+  ETC = '3'
+}
+
 export interface tag {
   modDate: string;
   regDate: string;
   seq: string;
   tagCategory: {
+    seq: TagCategorySeq;
     modDate: string;
     regDate: string;
-    seq: string;
     tagCategoryCode: string;
     tagCategoryName: string;
   };
-  tagCategorySeq: string;
+  tagCategorySeq: TagCategorySeq;
   tagCode: string;
   tagName: string;
 }
