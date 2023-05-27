@@ -1,4 +1,4 @@
-import DateRangePicker from '../components/DateRangePicker';
+import DateRangePicker from '../../components/DateRangePicker';
 
 /**
  * @name ListTest
