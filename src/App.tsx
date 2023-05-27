@@ -16,7 +16,6 @@ import After from './pages/After';
 import ListTest from './pages/dev/ListTest';
 import Post from './pages/Post';
 import SplashScreen from './pages/SplashScreen';
-import TestInput from './pages/dev/TestInput';
 import TestToast from './pages/dev/TestToast';
 
 import { ToastContainer } from '@kimploo/react-toastify';
@@ -61,9 +60,6 @@ const router = createBrowserRouter(
       ) : null}
       {import.meta.env.DEV ? (
         <Route path="test/splash" element={<SplashScreen />}></Route>
-      ) : null}
-      {import.meta.env.DEV ? (
-        <Route path="test/input" element={<TestInput />}></Route>
       ) : null}
       {import.meta.env.DEV ? (
         <Route path="test/toast" element={<TestToast />}></Route>
