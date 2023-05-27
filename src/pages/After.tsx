@@ -13,7 +13,9 @@ import {
   chipsBlue,
   chipsBlueBorder,
   chipsPink,
-  chipsPinkBorder
+  chipsPinkBorder,
+  chipsYellow,
+  chipsYellowBorder
 } from '../assets/customCSS/designSystem';
 
 export default function After() {
@@ -111,8 +113,8 @@ export default function After() {
                     key={index}
                     className={
                       checkedEmotion.includes(item)
-                        ? chipsBlue
-                        : chipsBlueBorder
+                        ? chipsYellow
+                        : chipsYellowBorder
                     }
                     onClick={onClick}
                   >

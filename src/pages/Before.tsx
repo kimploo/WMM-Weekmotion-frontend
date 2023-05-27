@@ -10,7 +10,9 @@ import {
   chipsBlue,
   chipsBlueBorder,
   chipsPink,
-  chipsPinkBorder
+  chipsPinkBorder,
+  chipsYellow,
+  chipsYellowBorder
 } from '../assets/customCSS/designSystem';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
@@ -62,7 +64,7 @@ export default function Before() {
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>
-        <div className="flex my-4">
+        <div className="flex my-4 gap-2">
           {emotion
             .filter((data) => data.tagCategory.seq === '1')
             .map((item: tag, index: number) => (
@@ -77,7 +79,7 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex my-4">
+        <div className="flex my-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '2')
             .map((item: tag, index: number) => (
@@ -92,14 +94,16 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex my-4">
+        <div className="flex my-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '3')
             .map((item: tag, index: number) => (
               <div
                 key={index}
                 className={
-                  checkedEmotion.includes(item) ? chipsBlue : chipsBlueBorder
+                  checkedEmotion.includes(item)
+                    ? chipsYellow
+                    : chipsYellowBorder
                 }
                 onClick={onClick}
               >

@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   btnYellow,
   btnYellowBorder,
-  chipsBlue,
-  chipsPink,
+  chipsColorPicker,
   smBtnYellow,
   smBtnYellowBorder
 } from '../assets/customCSS/designSystem';
@@ -74,10 +73,7 @@ export default function Post() {
       </div>
       <div>
         {emotion.emotion.map((item: tag, index: number) => (
-          <div
-            key={index}
-            className={item.tagCategory.seq === '1' ? chipsPink : chipsBlue}
-          >
+          <div key={index} className={chipsColorPicker(item.tagCategory.seq)}>
             {item.tagName}
           </div>
         ))}
