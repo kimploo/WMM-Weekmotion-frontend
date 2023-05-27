@@ -1,6 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
-import Calendar from 'react-calendar';
 import '../assets/customCSS/calendar.css';
 import {
   tab,

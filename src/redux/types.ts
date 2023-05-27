@@ -27,3 +27,24 @@ export interface tag {
   tagCode: string;
   tagName: string;
 }
+
+export interface diary {
+  calendarYn: string;
+  contents: string;
+  modDate: string;
+  regDate: string;
+  seq: string;
+  tags: diaryTag[];
+  title: string;
+  writerSeq: string;
+}
+
+export interface diaryTag {
+  diarySeq: string;
+  modDate: string;
+  regDate: string;
+  seq: string;
+  tag: tag;
+  tagSeq: string;
+  writerSeq: number;
+}

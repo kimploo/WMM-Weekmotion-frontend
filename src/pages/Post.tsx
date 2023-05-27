@@ -17,6 +17,7 @@ import { RootState } from '../redux';
 import { tag } from '../redux/types';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
+import { toast } from '@kimploo/react-toastify';
 
 export default function Post() {
   const data = useSelector((state: RootState) => {
@@ -34,19 +35,30 @@ export default function Post() {
 
   const requestDiary = async (category: string) => {
     try {
-      const response = await axios.post(`${BASE_URL}/diary`, {
-        title: data.note.title,
-        contents: data.note.note,
-        calendarYn: category === 'calendar' ? 'Y' : 'N',
-        tagSeq: emotion.emotion.map((item: tag) => {
-          return item.seq;
-        })
-      });
+      const response = await axios.post(
+        `${BASE_URL}/diary`,
+        {
+          title: data.note.title,
+          contents: data.note.note,
+          calendarYn: category === 'calendar' ? 'Y' : 'N',
+          tagSeq: emotion.emotion.map((item: tag) => {
+            return item.seq;
+          })
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        }
+      );
+      console.dir(response);
       if (response.status === 201) {
         if (category === 'calendar') {
-          navigate('scheduler');
+          navigate('/scheduler');
+          toast.success('캘린더에 감정이 등록되었어요!');
         } else if (category === 'trash') {
-          navigate('trash');
+          navigate('/trash');
+          toast.success('소각장에 감정이 등록되었어요!');
         }
       }
     } catch (error) {
