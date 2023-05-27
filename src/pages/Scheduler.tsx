@@ -1,5 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom';
-
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import '../assets/customCSS/calendar.css';
 import {
   tab,
   tabActive,
@@ -10,7 +12,6 @@ import weekmotion_ask from '../assets/images/weekmotion_ask.svg';
 import checkBoxEnable from '../assets/images/checkBoxEnable.svg';
 import checkBoxChecked from '../assets/images/checkBoxSelected.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
-import { useState } from 'react';
 
 import WMMCalendar from '../components/WMMCalendar';
 
