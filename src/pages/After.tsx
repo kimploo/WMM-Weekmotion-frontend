@@ -13,7 +13,9 @@ import {
   chipsBlue,
   chipsBlueBorder,
   chipsPink,
-  chipsPinkBorder
+  chipsPinkBorder,
+  chipsYellow,
+  chipsYellowBorder
 } from '../assets/customCSS/designSystem';
 
 export default function After() {
@@ -67,61 +69,63 @@ export default function After() {
           <br />
           오늘의 감정이 바뀌었나요?
         </h1>
-        {emotion && (
-          <>
-            <div className="my-4">
-              {emotion
-                .filter((data) => data.tagCategory.seq === '1')
-                .map((item: tag, index: number) => (
-                  <div
-                    key={index}
-                    className={
-                      checkedEmotion.includes(item)
-                        ? chipsPink
-                        : chipsPinkBorder
-                    }
-                    onClick={onClick}
-                  >
-                    {item.tagName}
-                  </div>
-                ))}
-            </div>
-            <div className="my-4">
-              {emotion
-                .filter((data: tag) => data.tagCategory.seq === '2')
-                .map((item: tag, index: number) => (
-                  <div
-                    key={index}
-                    className={
-                      checkedEmotion.includes(item)
-                        ? chipsBlue
-                        : chipsBlueBorder
-                    }
-                    onClick={onClick}
-                  >
-                    {item.tagName}
-                  </div>
-                ))}
-            </div>
-            <div className="my-4">
-              {emotion
-                .filter((data: tag) => data.tagCategory.seq === '3')
-                .map((item: tag, index: number) => (
-                  <div
-                    key={index}
-                    className={
-                      checkedEmotion.includes(item)
-                        ? chipsBlue
-                        : chipsBlueBorder
-                    }
-                    onClick={onClick}
-                  >
-                    {item.tagName}
-                  </div>
-                ))}
-            </div>
-          </>
-        )}
+        <div className="flex flex-wrap my-4 gap-2">
+          {emotion
+            .filter((data) => data.tagCategory.seq === '1')
+            .map((item: tag, index: number) => (
+              <div
+                key={index}
+                className={
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
+                    ? chipsPink
+                    : chipsPinkBorder
+                }
+                onClick={onClick}
+              >
+                {item.tagName}
+              </div>
+            ))}
+        </div>
+        <div className="flex flex-wrap my-4 gap-2">
+          {emotion
+            .filter((data: tag) => data.tagCategory.seq === '2')
+            .map((item: tag, index: number) => (
+              <div
+                key={index}
+                className={
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
+                    ? chipsBlue
+                    : chipsBlueBorder
+                }
+                onClick={onClick}
+              >
+                {item.tagName}
+              </div>
+            ))}
+        </div>
+        <div className="flex flex-wrap my-4 gap-2">
+          {emotion
+            .filter((data: tag) => data.tagCategory.seq === '3')
+            .map((item: tag, index: number) => (
+              <div
+                key={index}
+                className={
+                  checkedEmotion.find(
+                    (tag: tag) => tag.tagName === item.tagName
+                  )
+                    ? chipsYellow
+                    : chipsYellowBorder
+                }
+                onClick={onClick}
+              >
+                {item.tagName}
+              </div>
+            ))}
+        </div>
         <Link to={'/post'} onClick={() => dispatch(change(checkedEmotion))}>
           <button className="btn w-full rounded-full bg-emotion-yellow border-emotion-yellow text-mono-100">
             감정 선택하기

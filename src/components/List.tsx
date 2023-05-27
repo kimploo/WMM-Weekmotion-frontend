@@ -90,7 +90,12 @@ export default function List({
   return (
     <div className="w-full">
       {diary.map((item: diary, index) => (
-        <Link to={`${location.pathname}/${item.seq}`} key={index}>
+        <Link
+          to={`${location.pathname === '/' ? '' : location.pathname}/${
+            item.seq
+          }`}
+          key={index}
+        >
           <div key={index} className="px-5 pt-4">
             <div className="flex h-4 items-center">
               <p className="mr-2 text-mono-500 leading-4">

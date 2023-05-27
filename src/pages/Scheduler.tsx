@@ -13,6 +13,8 @@ import checkBoxChecked from '../assets/images/checkBoxSelected.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 
 import WMMCalendar from '../components/WMMCalendar';
+import List from '../components/List';
+import DateRangePicker from '../components/DateRangePicker';
 
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
@@ -114,7 +116,10 @@ export default function Scheduler() {
       {tabParams.get('tab') === 'calendar' ? (
         <WMMCalendar value={value} onChange={onChange} diaries={diaries} />
       ) : (
-        <div>List here</div>
+        <>
+          {/* <DateRangePicker /> */}
+          <List />
+        </>
       )}
     </section>
   );
