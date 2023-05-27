@@ -34,6 +34,7 @@ export default function Diary() {
 
   React.useEffect(() => {
     console.log(diaryInfo.date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const titleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

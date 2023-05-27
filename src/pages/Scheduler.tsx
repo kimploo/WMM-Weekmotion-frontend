@@ -14,7 +14,7 @@ import { useState } from 'react';
 
 import WMMCalendar from '../components/WMMCalendar';
 
-export default function Schduler() {
+export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
