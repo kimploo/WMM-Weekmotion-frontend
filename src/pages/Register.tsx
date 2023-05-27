@@ -45,7 +45,8 @@ export default function Register() {
         password: signInInfo.pw
       });
       if (response.status === 201) {
-        localStorage.setItem('jwt', response.data.data.accessToken);
+        localStorage.setItem('accessToken', response.data.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.data.refreshToken);
         navigate('/scheduler');
       }
     } catch (error) {
