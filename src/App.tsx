@@ -13,8 +13,9 @@ import Register from './pages/Register';
 import Nav from './components/Nav';
 import Before from './pages/Before';
 import After from './pages/After';
-import ListTest from './pages/ListTest';
+import ListTest from './pages/dev/ListTest';
 import Post from './pages/Post';
+import TestInput from './pages/dev/TestInput';
 
 const Layout = () => {
   return (
@@ -36,6 +37,21 @@ const router = createBrowserRouter(
       <Route path="after" element={<After />}></Route>
       <Route path="list-test" element={<ListTest />}></Route>
       <Route path="post" element={<Post />}></Route>
+      {import.meta.env.DEV ? (
+        <Route path="test/list" element={<ListTest />}></Route>
+      ) : null}
+      {import.meta.env.DEV ? (
+        <Route
+          path="test/input"
+          element={
+            <TestInput
+              label="ID"
+              content=""
+              placeholder="아이디를 입력하세요."
+            />
+          }
+        ></Route>
+      ) : null}
     </Route>
   )
 );
