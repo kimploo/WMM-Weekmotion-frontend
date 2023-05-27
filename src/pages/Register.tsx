@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from '@kimploo/react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import weekmotion from '../assets/images/weekmotion.svg';
 import { BASE_URL } from '../redux/function/url';
@@ -174,12 +174,6 @@ export default function Register() {
               돌아가기
             </button>
           </div>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar={true}
-            closeOnClick
-          />
         </>
       ) : (
         <>
@@ -225,12 +219,6 @@ export default function Register() {
               회원가입
             </button>
           </div>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar={true}
-            closeOnClick
-          />
         </>
       )}
     </section>

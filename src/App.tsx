@@ -21,6 +21,7 @@ import TestToast from './pages/dev/TestToast';
 
 import { ToastContainer } from '@kimploo/react-toastify';
 import '@kimploo/react-toastify/dist/ReactToastify.css';
+import Trash from './pages/Trash';
 
 const Layout = () => {
   return (
@@ -54,6 +55,7 @@ const router = createBrowserRouter(
       <Route path="after" element={<After />}></Route>
       <Route path="list-test" element={<ListTest />}></Route>
       <Route path="post" element={<Post />}></Route>
+      <Route path="trash" element={<Trash />}></Route>
       {import.meta.env.DEV ? (
         <Route path="test/list" element={<ListTest />}></Route>
       ) : null}

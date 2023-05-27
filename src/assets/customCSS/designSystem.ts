@@ -25,8 +25,21 @@ export const chipsBlue =
   'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3';
 export const chipsBlueBorder =
   'badge badge-outline h-7 border-emotion-lightBlue text-mono-700 cursor-pointer p-3';
-
+export const chipsYellow =
+  'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3';
+export const chipsYellowBorder =
+  'badge badge-outline h-7 border-emotion-lightYellow text-mono-700 cursor-pointer p-3';
 // tab css
 export const tabActive =
   'text-lg w-1/2 h-full text-emotion-yellow border-b-4 border-emotion-yellow';
 export const tab = 'text-lg w-1/2 h-full text-mono-400';
+// color picker function
+export const chipsColorPicker = (tagSeq: string) => {
+  if (tagSeq === '1') {
+    return 'badge h-7 bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer p-3';
+  } else if (tagSeq === '2') {
+    return 'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3';
+  } else {
+    return 'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3';
+  }
+};

@@ -13,7 +13,6 @@ import checkBoxChecked from '../assets/images/checkBoxSelected.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 
 import WMMCalendar from '../components/WMMCalendar';
-import { ToastContainer } from 'react-toastify';
 
 export default function Scheduler() {
   const currentDate = new Date();
@@ -100,12 +99,6 @@ export default function Scheduler() {
       ) : (
         <div>List here</div>
       )}
-      <ToastContainer
-        position="bottom-center"
-        autoClose={2000}
-        hideProgressBar={true}
-        closeOnClick
-      />
     </section>
   );
 }

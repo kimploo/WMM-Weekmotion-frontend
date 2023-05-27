@@ -17,7 +17,7 @@ import { RootState } from '../redux';
 import { tag } from '../redux/types';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
-import { toast } from 'react-toastify';
+import { toast } from '@kimploo/react-toastify';
 
 export default function Post() {
   const data = useSelector((state: RootState) => {

@@ -62,7 +62,7 @@ export default function Before() {
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>
-        <div className="my-4">
+        <div className="flex my-4">
           {emotion
             .filter((data) => data.tagCategory.seq === '1')
             .map((item: tag, index: number) => (
@@ -77,7 +77,7 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="my-4">
+        <div className="flex my-4">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '2')
             .map((item: tag, index: number) => (
@@ -92,7 +92,7 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="my-4">
+        <div className="flex my-4">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '3')
             .map((item: tag, index: number) => (
