@@ -41,16 +41,7 @@ const router = createBrowserRouter(
         <Route path="test/list" element={<ListTest />}></Route>
       ) : null}
       {import.meta.env.DEV ? (
-        <Route
-          path="test/input"
-          element={
-            <TestInput
-              label="ID"
-              content=""
-              placeholder="아이디를 입력하세요."
-            />
-          }
-        ></Route>
+        <Route path="test/input" element={<TestInput />}></Route>
       ) : null}
     </Route>
   )

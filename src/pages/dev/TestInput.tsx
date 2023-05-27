@@ -1,25 +1,7 @@
-interface Props {
-  label: string;
-  content: string;
-  placeholder: string;
-}
+import Input from '../../components/Input';
 
-export default function TestInput({ label, content, placeholder }: Props) {
+export default function TestInput() {
   return (
-    <div className="relative h-14 border-2 border-solid border-[#DCDCDC] rounded-lg">
-      <label
-        className="absolute mx-1 z-10 -top-2.5 left-2 text-xs font-normal text-[#ACACAC] bg-[#FFFFFF]"
-        htmlFor={label}
-      >
-        {label}
-      </label>
-      <input
-        className="block w-full pl-4 h-14 border-2 border-transparent appearance-none bg-transparent"
-        type="text"
-        name={label}
-        value={content}
-        placeholder={placeholder}
-      />
-    </div>
+    <Input label="ID" content="" placeholder="아이디를 입력하세요."></Input>
   );
 }
