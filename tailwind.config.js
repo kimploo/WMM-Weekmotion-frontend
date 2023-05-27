@@ -2,9 +2,6 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{html,jsx,tsx}'],
   theme: {
-    fontFamily: {
-      sans: ['Noto Sans KR']
-    },
     screens: {
       sm: '375px',
       md: '768px',
