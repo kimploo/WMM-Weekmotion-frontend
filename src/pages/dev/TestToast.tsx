@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from '@kimploo/react-toastify';
 import ToastErrorIcon from '../../items/ToastErrorIcon';
 import ToastSuccessIcon from '../../items/ToastSuccessIcon';
 import ToastCloseIcon from '../../items/ToastCloseIcon';
