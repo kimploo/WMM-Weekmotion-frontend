@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@kimploo/react-toastify": "^10.0.2",
+    "@kimploo/react-toastify": "^10.0.4",
     "@reduxjs/toolkit": "^1.9.5",
     "@wojtekmaj/react-daterange-picker": "^5.2.0",
     "daisyui": "^2.51.6",

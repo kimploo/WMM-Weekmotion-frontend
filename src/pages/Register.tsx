@@ -2,10 +2,10 @@ import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ToastContainer, toast } from '@kimploo/react-toastify';
 import weekmotion from '../assets/images/weekmotion.svg';
 import { BASE_URL } from '../redux/function/url';
 import Input from '../components/Input';
+import customToast from '../util/toast';
 
 export default function Register() {
   const [searchParams, setSearchParams] = useSearchParams({ view: 'signIn' });
@@ -50,7 +50,7 @@ export default function Register() {
         navigate('/scheduler');
       }
     } catch (error) {
-      toast.error('Error!');
+      customToast.error('Error!');
     }
   };
 
@@ -61,12 +61,12 @@ export default function Register() {
       );
       if (response.data.data.duplication === false) {
         setSignUpInfo({ ...signUpInfo, verify_id: true });
-        toast.success('사용 가능한 아이디입니다.');
+        customToast.success('사용 가능한 아이디입니다.');
       } else {
         throw new Error('중복된 아이디가 존재합니다.');
       }
     } catch (error: any) {
-      toast.error(error.message);
+      customToast.error(error.message);
     }
   };
 
@@ -82,11 +82,11 @@ export default function Register() {
         });
         if (response.status === 201) {
           setSearchParams({ view: 'signIn' });
-          toast.success('회원가입이 완료되었어요!');
+          customToast.success('회원가입이 완료되었어요!');
         }
       }
     } catch (error) {
-      toast.error('Error!');
+      customToast.error('Error!');
     }
   };
 
@@ -184,12 +184,6 @@ export default function Register() {
               돌아가기
             </button>
           </div>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar={true}
-            closeOnClick
-          />
         </>
       ) : (
         <>
@@ -233,12 +227,6 @@ export default function Register() {
               회원가입
             </button>
           </div>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={2000}
-            hideProgressBar={true}
-            closeOnClick
-          />
         </>
       )}
     </section>
