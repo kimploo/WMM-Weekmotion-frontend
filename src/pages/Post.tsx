@@ -14,7 +14,6 @@ import weekmotion_toTrash from '../assets/images/weekmotion_toTrash.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 import calendar from '../assets/images/calendar.svg';
 import { RootState } from '../redux';
-import { positiveEmotion } from '../assets/strings/emotions';
 
 export default function Post() {
   const data = useSelector((state: RootState) => {
@@ -38,7 +37,7 @@ export default function Post() {
         {emotion.emotion.map((item: string, index: number) => (
           <div
             key={index}
-            className={positiveEmotion.includes(item) ? chipsPink : chipsBlue}
+            // className={positiveEmotion.includes(item) ? chipsPink : chipsBlue}
           >
             {item}
           </div>
