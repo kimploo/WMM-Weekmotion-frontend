@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../redux';
 
-import { positiveEmotion } from '../assets/strings/emotions';
 import { change } from '../redux/slice/noteSlice';
 import { Link } from 'react-router-dom';
 import {
@@ -12,6 +11,7 @@ import {
   chipsPink
 } from '../assets/customCSS/designSystem';
 import calendar from '../assets/images/calendar.svg';
+import { tag } from '../redux/types';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -55,12 +55,12 @@ export default function Diary() {
         <p className="text-mono-700 text-2xl font-bold">{diaryInfo.date}</p>
       </div>
       <div>
-        {state.emotion.map((item: string, index: number) => (
+        {state.emotion.map((item: tag, index: number) => (
           <div
             key={index}
-            className={positiveEmotion.includes(item) ? chipsPink : chipsBlue}
+            className={item.tagCategory.seq === '1' ? chipsPink : chipsBlue}
           >
-            {item}
+            {item.tagName}
           </div>
         ))}
       </div>

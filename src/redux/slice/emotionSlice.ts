@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { tag } from '../types';
 
 const emotionSlice = createSlice({
   name: 'emotion',
   initialState: {
-    emotion: [] as string[]
+    emotion: [] as tag[]
   },
   reducers: {
     change: (state, action) => {

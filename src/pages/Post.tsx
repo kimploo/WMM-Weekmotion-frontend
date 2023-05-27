@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   btnYellow,
@@ -14,7 +14,9 @@ import weekmotion_toTrash from '../assets/images/weekmotion_toTrash.svg';
 import closeIcon from '../assets/images/closeIcon.svg';
 import calendar from '../assets/images/calendar.svg';
 import { RootState } from '../redux';
-import { positiveEmotion } from '../assets/strings/emotions';
+import { tag } from '../redux/types';
+import axios from 'axios';
+import { BASE_URL } from '../redux/function/url';
 
 export default function Post() {
   const data = useSelector((state: RootState) => {
@@ -28,6 +30,30 @@ export default function Post() {
     toTrash: false,
     toDelete: false
   });
+  const navigate = useNavigate();
+
+  const requestDiary = async (category: string) => {
+    try {
+      const response = await axios.post(`${BASE_URL}/diary`, {
+        title: data.note.title,
+        contents: data.note.note,
+        calendarYn: category === 'calendar' ? 'Y' : 'N',
+        tagSeq: emotion.emotion.map((item: tag) => {
+          return item.seq;
+        })
+      });
+      if (response.status === 201) {
+        if (category === 'calendar') {
+          navigate('scheduler');
+        } else if (category === 'trash') {
+          navigate('trash');
+        }
+      }
+    } catch (error) {
+      throw new Error('Error!');
+    }
+  };
+
   return (
     <section className="bg-mono-100 w-full h-screen flex flex-col gap-2 px-5">
       <div className="flex gap-x-[11px]">
@@ -35,12 +61,12 @@ export default function Post() {
         <p className="text-mono-700 text-2xl font-bold">{`${data.note.date} 의 감정`}</p>
       </div>
       <div>
-        {emotion.emotion.map((item: string, index: number) => (
+        {emotion.emotion.map((item: tag, index: number) => (
           <div
             key={index}
-            className={positiveEmotion.includes(item) ? chipsPink : chipsBlue}
+            className={item.tagCategory.seq === '1' ? chipsPink : chipsBlue}
           >
-            {item}
+            {item.tagName}
           </div>
         ))}
       </div>
@@ -89,9 +115,12 @@ export default function Post() {
             >
               취소
             </label>
-            <Link to={'/scheduler'}>
-              <button className={smBtnYellow}>등록하기</button>
-            </Link>
+            <button
+              onClick={() => requestDiary('calendar')}
+              className={smBtnYellow}
+            >
+              등록하기
+            </button>
           </div>
         </div>
       </div>
@@ -136,10 +165,12 @@ export default function Post() {
             >
               취소
             </label>
-            {/* 차후 소각장으로 연결 */}
-            <Link to={'/scheduler'}>
-              <button className={smBtnYellow}>보내기</button>
-            </Link>
+            <button
+              onClick={() => requestDiary('trash')}
+              className={smBtnYellow}
+            >
+              보내기
+            </button>
           </div>
         </div>
       </div>

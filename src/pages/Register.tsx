@@ -1,11 +1,15 @@
+import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import weekmotion from '../assets/images/weekmotion.svg';
+import { BASE_URL } from '../redux/function/url';
 
 export default function Register() {
   const [searchParams, setSearchParams] = useSearchParams({ view: 'signIn' });
+  const navigate = useNavigate();
   const [signInInfo, setSignInInfo] = useState({
     id: '',
     pw: ''
@@ -34,6 +38,58 @@ export default function Register() {
     });
   };
 
+  const signInRequest = async () => {
+    try {
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
+        id: signInInfo.id,
+        password: signInInfo.pw
+      });
+      if (response.status === 201) {
+        localStorage.setItem('accessToken', response.data.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.data.refreshToken);
+        navigate('/scheduler');
+      }
+    } catch (error) {
+      toast.error('Error!');
+    }
+  };
+
+  const checkIdRequest = async () => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/user/check/id/${signUpInfo.id}`
+      );
+      if (response.data.data.duplication === false) {
+        setSignUpInfo({ ...signUpInfo, verify_id: true });
+        toast.success('사용 가능한 아이디입니다.');
+      } else {
+        throw new Error('중복된 아이디가 존재합니다.');
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
+  const signUpRequest = async () => {
+    try {
+      if (signUpInfo.verify_id && signUpInfo.pw === signUpInfo.verify_pw) {
+        const response = await axios.post(`${BASE_URL}/user`, {
+          id: signUpInfo.id,
+          password: signUpInfo.pw,
+          name: signUpInfo.name,
+          email: undefined,
+          phone: signUpInfo.tel
+        });
+        if (response.status === 201) {
+          setSearchParams({ view: 'signIn' });
+          toast.success('회원가입이 완료되었어요!');
+        }
+      }
+    } catch (error) {
+      toast.error('Error!');
+    }
+  };
+
   return (
     <section className="bg-mono-100 h-screen flex flex-col items-center">
       {searchParams.get('view') === 'signUp' ? (
@@ -52,7 +108,10 @@ export default function Register() {
                 required
                 className="input input-bordered w-1/2 bg-mono-100 text-mono-700"
               />
-              <button className="btn ml-4 rounded-full  text-mono-100 bg-emotion-yellow border-emotion-yellow">
+              <button
+                onClick={checkIdRequest}
+                className="btn ml-4 rounded-full  text-mono-100 bg-emotion-yellow border-emotion-yellow"
+              >
                 중복확인
               </button>
             </div>
@@ -102,7 +161,10 @@ export default function Register() {
             />
           </article>
           <div className="flex flex-col gap-4 py-4 w-1/2">
-            <button className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100">
+            <button
+              onClick={signUpRequest}
+              className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100"
+            >
               가입하기
             </button>
             <button
@@ -112,6 +174,12 @@ export default function Register() {
               돌아가기
             </button>
           </div>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={2000}
+            hideProgressBar={true}
+            closeOnClick
+          />
         </>
       ) : (
         <>
@@ -144,7 +212,10 @@ export default function Register() {
             />
           </article>
           <div className="flex flex-col gap-4 py-4 w-1/2">
-            <button className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100">
+            <button
+              onClick={signInRequest}
+              className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100"
+            >
               로그인
             </button>
             <button
@@ -154,6 +225,12 @@ export default function Register() {
               회원가입
             </button>
           </div>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={2000}
+            hideProgressBar={true}
+            closeOnClick
+          />
         </>
       )}
     </section>
