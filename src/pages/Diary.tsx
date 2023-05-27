@@ -46,7 +46,7 @@ export default function Diary() {
   };
 
   return (
-    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2 px-5">
+    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
       <div className="flex gap-x-[11px]">
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">{diaryInfo.date}</p>
