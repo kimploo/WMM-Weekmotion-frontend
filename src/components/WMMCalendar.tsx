@@ -74,7 +74,6 @@ export default function WMMCalendar({ date, handleCalendar, diaries }: Props) {
         )
       }
       tileClassName={tileClassName}
-      // className="text-mono-700"
     />
   );
 }
