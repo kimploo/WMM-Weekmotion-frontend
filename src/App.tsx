@@ -23,12 +23,14 @@ import '@kimploo/react-toastify/dist/ReactToastify.css';
 import Trash from './pages/Trash';
 import TrashPost from './pages/TrashPost';
 import SchedulerPost from './pages/SchedulerPost';
+import EditPost from './pages/EditPost';
+import Loading from './pages/Loading';
 
 const Layout = () => {
   return (
     <>
       <Nav></Nav>
-      <div className="mx-5">
+      <div className="px-5 bg-mono-100">
         <Outlet></Outlet>
       </div>
       <ToastContainer
@@ -50,30 +52,30 @@ const Layout = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Scheduler />}></Route>
+      <Route index element={<Loading />}></Route>
       <Route path="diary" element={<Diary />}></Route>
       <Route path="scheduler" element={<Scheduler />}></Route>
-      <Route path="/:id" element={<SchedulerPost />}></Route>
+      <Route path=":id" element={<SchedulerPost />}></Route>
+      <Route path="scheduler/:id" element={<SchedulerPost />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>
       <Route path="list-test" element={<ListTest />}></Route>
+      <Route path="edit/:id" element={<EditPost />}></Route>
       <Route path="post" element={<Post />}></Route>
       <Route path="trash" element={<Trash />}></Route>
       <Route path="trash/:id" element={<TrashPost />}></Route>
       {import.meta.env.DEV ? (
-        <Route path="test/list" element={<ListTest />}></Route>
-      ) : null}
-      {import.meta.env.DEV ? (
-        <Route path="test/splash" element={<SplashScreen />}></Route>
-      ) : null}
-      {import.meta.env.DEV ? (
-        <Route path="test/toast" element={<TestToast />}></Route>
+        <>
+          <Route path="test/list" element={<ListTest />}></Route>
+          <Route path="test/splash" element={<SplashScreen />}></Route>
+          <Route path="test/toast" element={<TestToast />}></Route>
+        </>
       ) : null}
     </Route>
   )
 );
-
+8;
 if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());
 }

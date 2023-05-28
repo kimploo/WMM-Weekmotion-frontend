@@ -123,7 +123,7 @@ export default function Register() {
               <div className="flex justify-center items-center">
                 <button
                   onClick={checkIdRequest}
-                  className="btn rounded-full text-mono-100 bg-emotion-yellow border-emotion-yellow"
+                  className="btn flex-none rounded-full text-mono-100 bg-emotion-yellow border-emotion-yellow"
                 >
                   중복확인
                 </button>
