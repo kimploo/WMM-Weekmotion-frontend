@@ -17,7 +17,9 @@ export default function Loading() {
 
   return (
     <section className="bg-mono-100 h-screen flex flex-col justify-center items-center">
-      <img src={mainLogo} alt="main_logo" />
+      <div className="py-4">
+        <img src={mainLogo} alt="main_logo" />
+      </div>
     </section>
   );
 }

@@ -24,6 +24,7 @@ import Trash from './pages/Trash';
 import TrashPost from './pages/TrashPost';
 import SchedulerPost from './pages/SchedulerPost';
 import EditPost from './pages/EditPost';
+import Loading from './pages/Loading';
 
 const Layout = () => {
   return (
@@ -65,18 +66,16 @@ const router = createBrowserRouter(
       <Route path="trash" element={<Trash />}></Route>
       <Route path="trash/:id" element={<TrashPost />}></Route>
       {import.meta.env.DEV ? (
-        <Route path="test/list" element={<ListTest />}></Route>
-      ) : null}
-      {import.meta.env.DEV ? (
-        <Route path="test/splash" element={<SplashScreen />}></Route>
-      ) : null}
-      {import.meta.env.DEV ? (
-        <Route path="test/toast" element={<TestToast />}></Route>
+        <>
+          <Route path="test/list" element={<ListTest />}></Route>
+          <Route path="test/splash" element={<SplashScreen />}></Route>
+          <Route path="test/toast" element={<TestToast />}></Route>
+        </>
       ) : null}
     </Route>
   )
 );
-
+8;
 if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());
 }
