@@ -2,10 +2,8 @@ import weekmotion from '../assets/images/weekmotion.svg';
 
 export default function SplashScreen() {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="py-4">
-        <img src={weekmotion} alt="main_logo" />
-      </div>
-    </div>
+    <section className="bg-mono-100 h-[calc(100vh-4rem)] flex flex-col justify-center items-center">
+      <img src={weekmotion} alt="main_logo" />
+    </section>
   );
 }
