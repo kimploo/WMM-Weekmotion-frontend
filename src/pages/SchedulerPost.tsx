@@ -1,4 +1,3 @@
-import { toast } from '@kimploo/react-toastify';
 import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { btnYellow } from '../assets/customCSS/designSystem';
@@ -6,6 +5,7 @@ import DiaryPost from '../components/DiaryPost';
 import { BASE_URL } from '../redux/function/url';
 import backIcon from '../assets/images/back.svg';
 import editIcon from '../assets/images/edit.svg';
+import customToast from '../util/toast';
 
 export default function SchedulerPost() {
   const params = useParams();
@@ -13,7 +13,7 @@ export default function SchedulerPost() {
 
   const requestToTrash = async () => {
     try {
-      const response = axios.put(
+      const response = axios.patch(
         `${BASE_URL}/diary/${Number(params.id)}`,
         {
           calenderYn: 'N'
@@ -25,9 +25,9 @@ export default function SchedulerPost() {
         }
       );
       navigate(`/trash/${params.id}`);
-      toast('일기가 소각장으로 옮겨졌어요.');
+      customToast.success('일기가 소각장으로 옮겨졌어요.');
     } catch (error) {
-      toast('처리하지 못했어요.');
+      customToast.error('처리하지 못했어요.');
     }
   };
 
