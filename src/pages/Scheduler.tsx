@@ -63,7 +63,7 @@ export default function Scheduler() {
   }, []);
 
   return (
-    <section className="h-screen bg-mono-100">
+    <section className="min-h-screen h-auto max-h-full bg-mono-100">
       <div className="w-full h-14 flex justify-around items-center">
         <button
           className={
@@ -151,10 +151,10 @@ export default function Scheduler() {
           diaries={diaries}
         />
       ) : (
-        <>
+        <article>
           <DateRangePicker range={range} setRange={handleDatePicker} />
           <List range={range} />
-        </>
+        </article>
       )}
     </section>
   );

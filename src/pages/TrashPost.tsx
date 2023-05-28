@@ -30,9 +30,8 @@ export default function TrashPost() {
           }
         }
       );
-      if (response.status === 200) {
-        navigate(location.pathname);
-      }
+      navigate('/trash');
+      toast.success('일기가 완전히 삭제되었어요.');
     } catch (error) {
       console.error(error);
       toast.error('문제가 생겼어요.');
