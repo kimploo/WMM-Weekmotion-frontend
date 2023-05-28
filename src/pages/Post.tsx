@@ -16,7 +16,8 @@ import { RootState } from '../redux';
 import { tag } from '../redux/types';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
-import { toast } from '@kimploo/react-toastify';
+// import { toast } from '@kimploo/react-toastify';
+import customToast from '../util/toast';
 
 export default function Post() {
   const data = useSelector((state: RootState) => {
@@ -53,10 +54,10 @@ export default function Post() {
       if (response.status === 201) {
         if (category === 'calendar') {
           navigate('/scheduler');
-          toast.success('캘린더에 감정이 등록되었어요!');
+          customToast.success('캘린더에 감정이 등록되었어요!');
         } else if (category === 'trash') {
           navigate('/trash');
-          toast.success('소각장에 감정이 등록되었어요!');
+          customToast.success('소각장에 감정이 등록되었어요!');
         }
       }
     } catch (error) {

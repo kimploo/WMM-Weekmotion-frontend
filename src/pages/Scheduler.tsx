@@ -16,12 +16,29 @@ import WMMCalendar from '../components/WMMCalendar';
 import List from '../components/List';
 import DateRangePicker from '../components/DateRangePicker';
 
+import axios from 'axios';
+import { BASE_URL } from '../redux/function/url';
+
 export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
+  const [diaries, setDiaries] = useState([]);
+  const token = import.meta.env.DEV ? import.meta.env.VITE_TEST_TOKEN : '';
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/diary`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((data) => {
+        setDiaries(data.data.data);
+      });
+  }, []);
 
   useEffect(() => {
     if (localStorage.getItem('today') !== 'checked') {
@@ -112,7 +129,7 @@ export default function Scheduler() {
         </div>
       </div>
       {tabParams.get('tab') === 'calendar' ? (
-        <WMMCalendar value={value} onChange={onChange} />
+        <WMMCalendar value={value} onChange={onChange} diaries={diaries} />
       ) : (
         <>
           {/* <DateRangePicker /> */}
