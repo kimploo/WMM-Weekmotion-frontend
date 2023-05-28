@@ -3,7 +3,8 @@ import DRP from '@wojtekmaj/react-daterange-picker';
 import type {
   LooseValue,
   Range,
-  TileClassNameFunc
+  TileClassNameFunc,
+  Value
 } from 'react-calendar/dist/cjs/shared/types';
 
 import './DateRangePicker.css';
@@ -13,11 +14,10 @@ import { ReactComponent as WMMLogo } from '../assets/images/weekmotion_logo_1.sv
 
 import RightIcon from '../items/RightIcon';
 import LeftIcon from '../items/LeftIcon';
-import devConsoleLog from '../util/log/devConsoleLog';
 
 interface Props {
-  range: LooseValue;
-  setRange: (range: Range<Date>) => void;
+  range: Value;
+  setRange: (range: Value) => void;
 }
 
 export default function DateRangePicker({ range, setRange }: Props) {

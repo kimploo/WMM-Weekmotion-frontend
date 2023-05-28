@@ -16,7 +16,7 @@ export default function EditPost() {
           onClick={() => navigate('/scheduler')}
         />
       </nav>
-      <DiaryUpdate params={params.id} />
+      <DiaryUpdate params={params.id || '0'} />
     </section>
   );
 }

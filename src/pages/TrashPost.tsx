@@ -1,4 +1,3 @@
-import { toast } from '@kimploo/react-toastify';
 import axios from 'axios';
 import { useState } from 'react';
 import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
@@ -13,6 +12,7 @@ import backIcon from '../assets/images/back.svg';
 import editIcon from '../assets/images/edit.svg';
 import DiaryPost from '../components/DiaryPost';
 import { BASE_URL } from '../redux/function/url';
+import customToast from '../util/toast';
 
 export default function TrashPost() {
   const location = useLocation();
@@ -35,7 +35,7 @@ export default function TrashPost() {
       }
     } catch (error) {
       console.error(error);
-      toast.error('문제가 생겼어요.');
+      customToast.error('문제가 생겼어요.');
     }
   };
 
@@ -51,7 +51,7 @@ export default function TrashPost() {
           </button>
         </Link>
       </nav>
-      <DiaryPost params={params.id} />
+      <DiaryPost params={params.id || '0'} />
       <div className="pt-10">
         <button className={`${btnYellow} mb-4`}>감정을 캘린더로 보내기</button>
         <button

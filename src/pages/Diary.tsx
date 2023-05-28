@@ -12,6 +12,7 @@ import { toast } from '@kimploo/react-toastify';
 import { format } from 'date-fns';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
+import customToast from '../util/toast';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -78,7 +79,7 @@ export default function Diary() {
           onClick={(event) => {
             if (diaryInfo.title.length === 0 || diaryInfo.note.length === 0) {
               event.preventDefault();
-              toast.error('제목이나 일기 내용을 작성해주세요.');
+              customToast.error('제목이나 일기 내용을 작성해주세요.');
             }
           }}
         >

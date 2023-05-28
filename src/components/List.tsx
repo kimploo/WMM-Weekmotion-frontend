@@ -9,11 +9,12 @@ import emotion_negative from '../assets/images/emotion_negative.svg';
 import emotion_etc from '../assets/images/emotion_etc.svg';
 import { format } from 'date-fns';
 import customToast from '../util/toast';
+import { Value } from 'react-calendar/dist/cjs/shared/types';
 
 const currentDate = new Date();
 
 interface Props {
-  range: Date[];
+  range: Value;
 }
 
 export default function List({ range = [currentDate, currentDate] }: Props) {
@@ -22,18 +23,20 @@ export default function List({ range = [currentDate, currentDate] }: Props) {
 
   const requestDiary = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/diary`, {
-        params: {
-          calenderYn: location.pathname === '/trash' ? 'N' : 'Y',
-          yearMonth: format(range[0], 'yyyy-MM'),
-          fromDate: format(range[0], 'yyyy/MM/dd'),
-          toDate: format(range[1], 'yyyy/MM/dd')
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
-        }
-      });
-      setDiary(response.data.data);
+      if (range && !(range instanceof Date)) {
+        const response = await axios.get(`${BASE_URL}/diary`, {
+          params: {
+            calenderYn: location.pathname === '/trash' ? 'N' : 'Y',
+            yearMonth: format(range[0] as Date, 'yyyy-MM'),
+            fromDate: format(range[0] as Date, 'yyyy/MM/dd'),
+            toDate: format(range[1] as Date, 'yyyy/MM/dd')
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        });
+        setDiary(response.data.data);
+      }
     } catch (error) {
       console.error(error);
       customToast.error('데이터를 불러오지 못했어요.');
@@ -64,6 +67,7 @@ export default function List({ range = [currentDate, currentDate] }: Props) {
 
   useEffect(() => {
     requestDiary();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [range]);
 
   return (

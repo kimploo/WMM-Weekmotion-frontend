@@ -24,13 +24,13 @@ import { Range, Value } from 'react-calendar/dist/cjs/shared/types';
 export default function Scheduler() {
   const currentDate = new Date();
   const [date, setDate] = useState<Value>(currentDate);
-  const [range, setRange] = useState<Range<Date>>([currentDate, currentDate]);
+  const [range, setRange] = useState<Value>([currentDate, currentDate]);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
   const [diaries, setDiaries] = useState([]);
 
-  const handleDatePicker = (range: Range<Date>) => {
+  const handleDatePicker = (range: Value) => {
     devConsoleLog('handleDatePicker', range);
     setRange(range);
   };

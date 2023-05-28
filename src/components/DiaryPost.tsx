@@ -1,4 +1,3 @@
-import { toast } from '@kimploo/react-toastify';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../redux/function/url';
@@ -7,6 +6,7 @@ import calendar from '../assets/images/calendar.svg';
 import { diary, diaryTag } from '../redux/types';
 import { chipsColorPicker } from '../assets/customCSS/designSystem';
 import format from 'date-fns/format';
+import customToast from '../util/toast';
 
 export default function DiaryPost({ params }: { params: string }) {
   const [post, setPost] = useState<diary>();
@@ -20,12 +20,13 @@ export default function DiaryPost({ params }: { params: string }) {
       });
       setPost(response.data.data);
     } catch (error) {
-      toast('해당 일기를 불러오지 못했어요.');
+      customToast.error('해당 일기를 불러오지 못했어요.');
     }
   };
 
   useEffect(() => {
     requestPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

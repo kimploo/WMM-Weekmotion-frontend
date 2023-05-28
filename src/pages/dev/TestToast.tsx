@@ -1,24 +1,15 @@
-import { toast } from '@kimploo/react-toastify';
-import ToastErrorIcon from '../../items/ToastErrorIcon';
-import ToastSuccessIcon from '../../items/ToastSuccessIcon';
-import ToastCloseIcon from '../../items/ToastCloseIcon';
+import customToast from '../../util/toast';
 
 // TODO: height가 잘 안맞음
 // import './TestToast.css';
 
 export default function TestToast() {
   const errorToastHandler = () => {
-    return toast.error('Error!', {
-      icon: ToastErrorIcon,
-      closeButton: ToastCloseIcon
-    });
+    return customToast.error('Error!');
   };
 
   const successToastHandler = () => {
-    return toast.success('회원가입이 완료되었어요!', {
-      icon: ToastSuccessIcon,
-      closeButton: ToastCloseIcon
-    });
+    return customToast.success('성공!');
   };
 
   return (

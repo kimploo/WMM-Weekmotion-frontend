@@ -65,8 +65,10 @@ export default function Register() {
       } else {
         throw new Error('중복된 아이디가 존재합니다.');
       }
-    } catch (error: any) {
-      customToast.error(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        customToast.error(error.message);
+      }
     }
   };
 

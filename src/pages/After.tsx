@@ -17,7 +17,7 @@ import {
   chipsYellow,
   chipsYellowBorder
 } from '../assets/customCSS/designSystem';
-import { toast } from '@kimploo/react-toastify';
+import customToast from '../util/toast';
 
 export default function After() {
   const state = useSelector((state: RootState) => {
@@ -132,7 +132,7 @@ export default function After() {
           onClick={(event) => {
             if (checkedEmotion.length === 0) {
               event.preventDefault();
-              toast.error('하나 이상의 감정을 선택해주세요.');
+              customToast.error('하나 이상의 감정을 선택해주세요.');
             }
             dispatch(change(checkedEmotion));
           }}

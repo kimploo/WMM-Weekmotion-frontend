@@ -16,7 +16,6 @@ import { RootState } from '../redux';
 import { tag } from '../redux/types';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
-// import { toast } from '@kimploo/react-toastify';
 import customToast from '../util/toast';
 
 export default function Post() {

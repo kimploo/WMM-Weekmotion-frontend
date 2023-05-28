@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { btnYellow } from '../assets/customCSS/designSystem';
 import { BASE_URL } from '../redux/function/url';
 import { diary } from '../redux/types';
+import customToast from '../util/toast';
 
 export default function DiaryUpdate({ params }: { params: string }) {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function DiaryUpdate({ params }: { params: string }) {
       });
       setPost(response.data.data);
     } catch (error) {
-      toast.error('해당 일기를 불러오지 못했어요.');
+      customToast.error('해당 일기를 불러오지 못했어요.');
     }
   };
 
@@ -45,6 +46,7 @@ export default function DiaryUpdate({ params }: { params: string }) {
 
   useEffect(() => {
     requestPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
