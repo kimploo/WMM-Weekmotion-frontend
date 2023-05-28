@@ -10,6 +10,8 @@ import calendar from '../assets/images/calendar.svg';
 import { tag } from '../redux/types';
 import { toast } from '@kimploo/react-toastify';
 import { format } from 'date-fns';
+import Input from '../components/Input';
+import Textarea from '../components/Textarea';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
@@ -53,43 +55,41 @@ export default function Diary() {
           </div>
         ))}
       </div>
-      <label htmlFor="title">Title</label>
-      <input
+      <Input
         type="text"
         name="title"
         id="title"
-        className="input input-bordered bg-mono-100 text-mono-700"
+        label="Title"
         onChange={titleOnChange}
         placeholder="제목을 작성해주세요."
-        required
+        required={true}
       />
-      <label htmlFor="note" className="label">
-        Note
-      </label>
-      <textarea
+      <Textarea
         name="note"
         id="textarea"
-        className="textarea textarea-bordered h-1/2 bg-mono-100 text-mono-700 resize-none mb-5"
+        label="Note"
         onChange={textAreaOnChange}
         placeholder="일기 내용을 작성해주세요."
         required
-      />
-      <Link
-        to={'/after'}
-        onClick={(event) => {
-          if (diaryInfo.title.length === 0 || diaryInfo.note.length === 0) {
-            event.preventDefault();
-            toast.error('제목이나 일기 내용을 작성해주세요.');
-          }
-        }}
-      >
-        <button
-          className={btnYellow}
-          onClick={() => dispatch(change(diaryInfo))}
+      ></Textarea>
+      <div className="mt-5">
+        <Link
+          to={'/after'}
+          onClick={(event) => {
+            if (diaryInfo.title.length === 0 || diaryInfo.note.length === 0) {
+              event.preventDefault();
+              toast.error('제목이나 일기 내용을 작성해주세요.');
+            }
+          }}
         >
-          다음
-        </button>
-      </Link>
+          <button
+            className={btnYellow}
+            onClick={() => dispatch(change(diaryInfo))}
+          >
+            다음
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }

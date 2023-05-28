@@ -17,9 +17,7 @@ import {
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
 import { tag } from '../redux/types';
-import { toast } from '@kimploo/react-toastify';
-
-// TODO: 부정적 감정, ETC 감정 기록 불가
+import customToast from '../util/toast';
 
 export default function Before() {
   const [emotion, setEmotion] = useState<tag[]>([]);
@@ -42,6 +40,7 @@ export default function Before() {
       setCheckedEmotion(
         checkedEmotion.filter((item: tag) => item.tagName !== innerText)
       );
+      customToast.error('3개 이하의 감정만 입력하세요.');
     }
   };
 
@@ -129,7 +128,7 @@ export default function Before() {
           onClick={(event) => {
             if (checkedEmotion.length === 0) {
               event.preventDefault();
-              toast.error('하나 이상의 감정을 선택해주세요.');
+              customToast.error('하나 이상의 감정을 선택해주세요.');
             }
             dispatch(change(checkedEmotion));
           }}
