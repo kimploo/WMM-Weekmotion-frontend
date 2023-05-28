@@ -7,39 +7,16 @@ import { diary, diaryTag } from '../redux/types';
 import emotion_positive from '../assets/images/emotion_positive.svg';
 import emotion_negative from '../assets/images/emotion_negative.svg';
 import emotion_etc from '../assets/images/emotion_etc.svg';
-import { toast } from '@kimploo/react-toastify';
+import { format } from 'date-fns';
+import customToast from '../util/toast';
 
-export default function List({
-  yearMonth = new Date()
-    .toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit'
-    })
-    .replaceAll('. ', '-')
-    .slice(0, -4),
-  date = [
-    new Date()
-      .toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      })
-      .replaceAll('. ', '-')
-      .slice(0, -1),
-    new Date()
-      .toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      })
-      .replaceAll('. ', '-')
-      .slice(0, -1)
-  ]
-}: {
-  yearMonth: string;
-  date: string[];
-}) {
+const currentDate = new Date();
+
+interface Props {
+  range: Date[];
+}
+
+export default function List({ range = [currentDate, currentDate] }: Props) {
   const [diary, setDiary] = useState<diary[]>([]);
   const location = useLocation();
 
@@ -48,9 +25,9 @@ export default function List({
       const response = await axios.get(`${BASE_URL}/diary`, {
         params: {
           calenderYn: location.pathname === '/trash' ? 'N' : 'Y',
-          yearMonth: yearMonth,
-          fromDate: date[0],
-          toDate: date[1]
+          yearMonth: format(range[0], 'yyyy-MM'),
+          fromDate: format(range[0], 'yyyy/MM/dd'),
+          toDate: format(range[1], 'yyyy/MM/dd')
         },
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -59,7 +36,7 @@ export default function List({
       setDiary(response.data.data);
     } catch (error) {
       console.error(error);
-      toast.error('데이터를 불러오지 못했어요.');
+      customToast.error('데이터를 불러오지 못했어요.');
     }
   };
 
@@ -87,7 +64,7 @@ export default function List({
 
   useEffect(() => {
     requestDiary();
-  }, []);
+  }, [range]);
 
   return (
     <div className="w-full">
@@ -101,15 +78,7 @@ export default function List({
           <div key={index} className="px-5 pt-4">
             <div className="flex h-4 items-center">
               <p className="mr-2 text-mono-500 leading-4">
-                {new Date(item.modDate)
-                  .toLocaleDateString(undefined, {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit'
-                  })
-                  .split(' ')
-                  .join('')
-                  .slice(0, -1)}
+                {format(new Date(item.modDate), 'yyyy/MM/dd')}
               </p>
               <div className="flex gap-x-1">
                 {item.tags.map((tag: diaryTag, index) => (

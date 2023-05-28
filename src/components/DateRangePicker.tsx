@@ -1,26 +1,29 @@
-import { useState } from 'react';
 import DRP from '@wojtekmaj/react-daterange-picker';
 
 import type {
+  LooseValue,
   Range,
   TileClassNameFunc
 } from 'react-calendar/dist/cjs/shared/types';
 
+import './DateRangePicker.css';
 import './DateRangePickerCalendar.css';
 import { ReactComponent as CalIcon } from '../assets/images/date_range_picker_toggle.svg';
 import { ReactComponent as WMMLogo } from '../assets/images/weekmotion_logo_1.svg';
 
 import RightIcon from '../items/RightIcon';
 import LeftIcon from '../items/LeftIcon';
+import devConsoleLog from '../util/log/devConsoleLog';
 
-export default function DateRangePicker() {
-  const currentDate = new Date();
-  const [value, onChange] = useState<Range<Date>>([currentDate, currentDate]);
+interface Props {
+  range: LooseValue;
+  setRange: (range: Range<Date>) => void;
+}
 
+export default function DateRangePicker({ range, setRange }: Props) {
   // TODO: useCallback 적용
   // https://github.com/wojtekmaj/react-calendar/wiki/Recipes#selectively-style-tiles
   const selectedTile: TileClassNameFunc = ({ activeStartDate, date, view }) => {
-    const [start, end] = value;
     // 해당 달의 날짜가 아닌 경우 흐리게
     if (view === 'month' && activeStartDate.getMonth() !== date.getMonth()) {
       return 'opacity-50';
@@ -34,9 +37,10 @@ export default function DateRangePicker() {
   return (
     <>
       <DRP
-        // onChange={onChange}
-        value={value}
-        isOpen={true}
+        value={range}
+        onChange={(range) => {
+          setRange(range);
+        }}
         calendarType={'US'}
         calendarIcon={<CalIcon />}
         clearIcon={<WMMLogo />}

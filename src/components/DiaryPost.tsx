@@ -6,6 +6,7 @@ import { BASE_URL } from '../redux/function/url';
 import calendar from '../assets/images/calendar.svg';
 import { diary, diaryTag } from '../redux/types';
 import { chipsColorPicker } from '../assets/customCSS/designSystem';
+import format from 'date-fns/format';
 
 export default function DiaryPost({ params }: { params: string }) {
   const [post, setPost] = useState<diary>();
@@ -31,16 +32,11 @@ export default function DiaryPost({ params }: { params: string }) {
     <>
       <div className="flex gap-x-[11px] pb-4">
         <img src={calendar} alt="calendar_icon" />
-        <p className="text-mono-700 text-2xl font-bold">{`${new Date(
-          post?.modDate
-        )
-          .toLocaleDateString(undefined, {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-          })
-          .replaceAll('. ', '.')
-          .slice(0, -1)} 의 감정`}</p>
+        <p className="text-mono-700 text-2xl font-bold">
+          {post
+            ? `${format(new Date(post.modDate), 'yyyy.MM.dd')} 의 감정`
+            : '감정'}
+        </p>
       </div>
       <div className="flex gap-2">
         {post?.tags.map((item: diaryTag, index: number) => (

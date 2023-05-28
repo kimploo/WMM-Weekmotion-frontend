@@ -19,14 +19,21 @@ import DateRangePicker from '../components/DateRangePicker';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
 import devConsoleLog from '../util/log/devConsoleLog';
+import { Range } from 'react-calendar/dist/cjs/shared/types';
 
 export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
+  const [range, setRange] = useState<Range<Date>>([currentDate, currentDate]);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
   const [diaries, setDiaries] = useState([]);
+
+  const handleDatePicker = (range: Range<Date>) => {
+    devConsoleLog('handleDatePicker', range);
+    setRange(range);
+  };
 
   useEffect(() => {
     axios
@@ -133,8 +140,8 @@ export default function Scheduler() {
         <WMMCalendar value={value} onChange={onChange} diaries={diaries} />
       ) : (
         <>
-          {/* <DateRangePicker /> */}
-          <List />
+          <DateRangePicker range={range} setRange={handleDatePicker} />
+          <List range={range} />
         </>
       )}
     </section>
