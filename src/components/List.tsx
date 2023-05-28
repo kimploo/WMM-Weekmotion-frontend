@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { chipsColorPicker } from '../assets/customCSS/designSystem';
 import { BASE_URL } from '../redux/function/url';
-import { diary, diaryTag } from '../redux/types';
+import { TagCategorySeq, diary, diaryTag } from '../redux/types';
 import emotion_positive from '../assets/images/emotion_positive.svg';
 import emotion_negative from '../assets/images/emotion_negative.svg';
 import emotion_etc from '../assets/images/emotion_etc.svg';
@@ -79,10 +79,10 @@ export default function List({ range = [currentDate, currentDate] }: Props) {
           }`}
           key={index}
         >
-          <div key={index} className="px-5 pt-4">
+          <div key={index} className="pt-4">
             <div className="flex h-4 items-center">
               <p className="mr-2 text-mono-500 leading-4">
-                {format(new Date(item.modDate), 'yyyy/MM/dd')}
+                {format(new Date(item.modDate), 'yyyy.MM.dd')}
               </p>
               <div className="flex gap-x-1">
                 {item.tags.map((tag: diaryTag, index) => (
@@ -94,14 +94,44 @@ export default function List({ range = [currentDate, currentDate] }: Props) {
               {item.title}
             </h1>
             <div className="flex justify-end pt-1 gap-x-2 pb-4 border-b-[1px] border-mono-300 border-solid">
-              {item.tags.map((tag: diaryTag, index) => (
-                <div
-                  key={index}
-                  className={chipsColorPicker(tag.tag.tagCategorySeq)}
-                >
-                  {tag.tag.tagName}
-                </div>
-              ))}
+              {item.tags.map((tag: diaryTag, index) => {
+                if (tag.tag.tagCategorySeq === TagCategorySeq.POSITIVE) {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        'flex justify-center items-center h-7 px-3 bg-emotion-lightPink border-emotion-lightPink text-mono-700 rounded-full text-center'
+                      }
+                    >
+                      <span>{tag.tag.tagName}</span>
+                    </div>
+                  );
+                }
+                if (tag.tag.tagCategorySeq === TagCategorySeq.NEGATIVE) {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        'flex justify-center items-center h-7 px-3 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 rounded-full text-center'
+                      }
+                    >
+                      <span>{tag.tag.tagName}</span>
+                    </div>
+                  );
+                }
+                if (tag.tag.tagCategorySeq === TagCategorySeq.ETC) {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        'flex justify-center items-center h-7 px-3 bg-emotion-lightYellow border-emotion-lightYellow  text-mono-700 rounded-full text-center'
+                      }
+                    >
+                      <span>{tag.tag.tagName}</span>
+                    </div>
+                  );
+                }
+              })}
             </div>
           </div>
         </Link>

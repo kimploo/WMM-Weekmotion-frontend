@@ -150,10 +150,10 @@ export default function Scheduler() {
           diaries={diaries}
         />
       ) : (
-        <>
+        <div className="px-5">
           <DateRangePicker range={range} setRange={handleDatePicker} />
           <List range={range} />
-        </>
+        </div>
       )}
     </section>
   );

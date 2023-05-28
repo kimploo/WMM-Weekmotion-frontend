@@ -1,12 +1,15 @@
 .react-daterange-picker.wmm-date-range-picker {
   display: flex;
-  position: static;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
 }
 
 .wmm-date-range-picker .react-daterange-picker,
 .wmm-date-range-picker .react-daterange-picker *,
 .wmm-date-range-picker .react-daterange-picker *:before,
 .wmm-date-range-picker .react-daterange-picker *:after {
+
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -17,17 +20,17 @@
   color: #6d6d6d;
 }
 
+
 .wmm-date-range-picker .react-daterange-picker__wrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
-  font-family: 'Noto Sans KR';
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
 }
 
 .wmm-date-range-picker .react-daterange-picker__inputGroup {
-  /* min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2); */
   height: 100%;
   flex-grow: 1;
   padding: 0 2px;
@@ -46,11 +49,6 @@
 .wmm-date-range-picker .react-daterange-picker__inputGroup__input {
   /* min-width: 0.54em; */
   height: 100%;
-  position: relative;
-  padding: 0 1px;
-  border: 0;
-  background: none;
-  color: currentColor;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
