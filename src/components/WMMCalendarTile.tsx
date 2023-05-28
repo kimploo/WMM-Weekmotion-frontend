@@ -4,7 +4,6 @@ import PositiveEmojiIcon from '../items/PositiveEmojiIcon';
 import { TagCategorySeq, diary } from '../redux/types';
 import { TileArgs } from 'react-calendar/dist/cjs/shared/types';
 import isSameDMY from '../util/date/isSameDMY';
-import { toDate } from 'date-fns';
 
 interface Props {
   diaries: diary[];

@@ -40,7 +40,7 @@ export default function Post() {
         {
           title: data.note.title,
           contents: data.note.note,
-          calendarYn: category === 'calendar' ? 'Y' : 'N',
+          calenderYn: category === 'calendar' ? 'Y' : 'N',
           tagSeq: emotion.emotion.map((item: tag) => {
             return item.seq;
           })
@@ -51,7 +51,6 @@ export default function Post() {
           }
         }
       );
-      console.dir(response);
       if (response.status === 201) {
         if (category === 'calendar') {
           navigate('/scheduler');
@@ -67,12 +66,12 @@ export default function Post() {
   };
 
   return (
-    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2 px-5">
+    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
       <div className="flex gap-x-[11px]">
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">{`${data.note.date} 의 감정`}</p>
       </div>
-      <div>
+      <div className="flex gap-2">
         {emotion.emotion.map((item: tag, index: number) => (
           <div key={index} className={chipsColorPicker(item.tagCategory.seq)}>
             {item.tagName}

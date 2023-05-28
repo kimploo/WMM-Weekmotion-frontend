@@ -23,7 +23,7 @@ export default function Scheduler() {
   const currentDate = new Date();
   const [value, onChange] = useState<Date>(currentDate);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
-  const [isChecked, setIsChecked] = useState(true);
+  const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
   const [diaries, setDiaries] = useState([]);
   const token = import.meta.env.DEV ? import.meta.env.VITE_TEST_TOKEN : '';
@@ -40,11 +40,21 @@ export default function Scheduler() {
       });
   }, []);
 
+  useEffect(() => {
+    if (localStorage.getItem('today') !== 'checked') {
+      setIsChecked(true);
+    }
+  }, []);
+
   return (
     <section className="h-screen bg-mono-100">
       <div className="w-full h-14 flex justify-around items-center">
         <button
-          className={tabParams.get('tab') === 'calendar' ? tabActive : tab}
+          className={
+            tabParams.get('tab') === 'calendar'
+              ? 'text-lg w-1/2 h-full text-emotion-yellow border-b-4 border-emotion-yellow'
+              : 'text-lg w-1/2 h-full text-mono-400 border-b-[1px] border-mono-300'
+          }
           onClick={() => setTabParams({ tab: 'calendar' })}
         >
           캘린더
@@ -103,7 +113,12 @@ export default function Scheduler() {
             <label
               htmlFor="my-modal-3"
               className={smBtnYellowBorder}
-              onClick={() => setIsChecked(!isChecked)}
+              onClick={() => {
+                if (isCheckedToday) {
+                  localStorage.setItem('today', 'checked');
+                }
+                setIsChecked(!isChecked);
+              }}
             >
               안할래요
             </label>

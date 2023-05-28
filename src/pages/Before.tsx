@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
 import { tag } from '../redux/types';
+import { toast } from '@kimploo/react-toastify';
 
 export default function Before() {
   const [emotion, setEmotion] = useState<tag[]>([]);
@@ -74,8 +75,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsPink
-                    : chipsPinkBorder
+                    ? 'badge h-7 bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightPink text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -93,8 +94,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsBlue
-                    : chipsBlueBorder
+                    ? 'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -112,8 +113,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? chipsYellow
-                    : chipsYellowBorder
+                    ? 'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
+                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
                 }
                 onClick={onClick}
               >
@@ -121,7 +122,16 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <Link to={'/diary'} onClick={() => dispatch(change(checkedEmotion))}>
+        <Link
+          to={'/diary'}
+          onClick={(event) => {
+            if (checkedEmotion.length === 0) {
+              event.preventDefault();
+              toast.error('하나 이상의 감정을 선택해주세요.');
+            }
+            dispatch(change(checkedEmotion));
+          }}
+        >
           <button className={btnYellow}>일기 쓰러가기</button>
         </Link>
       </article>

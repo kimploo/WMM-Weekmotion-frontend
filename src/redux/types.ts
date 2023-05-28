@@ -35,7 +35,7 @@ export interface tag {
 }
 
 export interface diary {
-  calendarYn: string;
+  calenderYn: string;
   contents: string;
   modDate: string;
   regDate: string;
