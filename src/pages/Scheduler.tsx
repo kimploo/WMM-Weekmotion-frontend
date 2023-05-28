@@ -1,6 +1,5 @@
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import '../assets/customCSS/calendar.css';
 import {
   tab,
   tabActive,

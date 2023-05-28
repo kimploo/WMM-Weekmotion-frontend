@@ -46,7 +46,7 @@ export default function WMMCalendar({ date, handleCalendar, diaries }: Props) {
       className={'wmm-calendar-view'}
       onChange={handleCalendar}
       navigationLabel={({ date, label, locale, view }) => (
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center gap-1">
           <WMMLogo />
           <span>{format(date, 'yyyy년 M월')}</span>
           <CalendarDropdownIcon></CalendarDropdownIcon>
