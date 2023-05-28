@@ -13,7 +13,7 @@ export default function SchedulerPost() {
 
   const requestToTrash = async () => {
     try {
-      const response = axios.put(
+      const response = axios.patch(
         `${BASE_URL}/diary/${Number(params.id)}`,
         {
           calenderYn: 'N'
@@ -25,9 +25,10 @@ export default function SchedulerPost() {
         }
       );
       navigate(`/trash/${params.id}`);
-      toast('일기가 소각장으로 옮겨졌어요.');
+      toast.success('일기가 소각장으로 옮겨졌어요.');
     } catch (error) {
-      toast('처리하지 못했어요.');
+      console.error(error);
+      toast.error('처리하지 못했어요.');
     }
   };
 

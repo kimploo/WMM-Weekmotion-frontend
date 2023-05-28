@@ -68,7 +68,10 @@ export default function Post() {
     <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
       <div className="flex gap-x-[11px]">
         <img src={calendar} alt="calendar_icon" />
-        <p className="text-mono-700 text-2xl font-bold">{`${data.note.date} 의 감정`}</p>
+        <p className="text-mono-700 text-2xl font-bold">{`${data.note.date.slice(
+          0,
+          10
+        )} 의 감정`}</p>
       </div>
       <div className="flex gap-2">
         {emotion.emotion.map((item: tag, index: number) => (
