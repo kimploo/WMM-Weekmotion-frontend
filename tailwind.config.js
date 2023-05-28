@@ -19,6 +19,7 @@ module.exports = {
       },
       emotion: {
         yellow: '#FFD54A',
+        yellow2: '#FFE388',
         lightYellow: '#FAE5A0',
         pink: '#FF64AE',
         lightPink: '#FAACD2',

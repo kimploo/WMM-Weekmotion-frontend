@@ -40,7 +40,7 @@ export default function Before() {
       setCheckedEmotion(
         checkedEmotion.filter((item: tag) => item.tagName !== innerText)
       );
-      customToast.error('3개 이하의 감정만 입력하세요.');
+      // customToast.error('3개 이하의 감정만 입력하세요.');
     }
   };
 
@@ -66,7 +66,7 @@ export default function Before() {
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>
-        <div className="flex flex-wrap my-4 gap-2">
+        <div className="flex flex-wrap mt-10 gap-2">
           {emotion
             .filter((data) => data.tagCategory.seq === '1')
             .map((item: tag, index: number) => (
@@ -76,8 +76,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? 'badge h-7 bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer p-3'
-                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightPink text-mono-700 cursor-pointer p-3'
+                    ? 'h-7 px-3 rounded-full border-[1px] bg-emotion-lightPink border-x-transparent border-y-transparent text-mono-700 cursor-pointer'
+                    : 'h-7 px-3 rounded-full border-[1px] border-emotion-lightPink text-mono-700 cursor-pointer'
                 }
                 onClick={onClick}
               >
@@ -85,7 +85,7 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex flex-wrap my-4 gap-2">
+        <div className="flex flex-wrap mt-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '2')
             .map((item: tag, index: number) => (
@@ -95,8 +95,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? 'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
-                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightBlue text-mono-700 cursor-pointer p-3'
+                    ? 'h-7 px-3 rounded-full border-[1px] bg-emotion-lightBlue border-x-transparent border-y-transparent text-mono-700 cursor-pointer'
+                    : 'h-7 px-3 rounded-full border-[1px] border-emotion-lightBlue text-mono-700 cursor-pointer'
                 }
                 onClick={onClick}
               >
@@ -104,7 +104,7 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <div className="flex flex-wrap my-4 gap-2">
+        <div className="flex flex-wrap mt-4 gap-2">
           {emotion
             .filter((data: tag) => data.tagCategory.seq === '3')
             .map((item: tag, index: number) => (
@@ -114,8 +114,8 @@ export default function Before() {
                   checkedEmotion.find(
                     (tag: tag) => tag.tagName === item.tagName
                   )
-                    ? 'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
-                    : 'badge badge-outline h-7 bg-mono-100 border-emotion-lightYellow text-mono-700 cursor-pointer p-3'
+                    ? 'h-7 px-3 rounded-full border-[1px] bg-emotion-yellow2 border-x-transparent border-y-transparent text-mono-700 cursor-pointer'
+                    : 'h-7 px-3 rounded-full border-[1px] border-emotion-yellow2 text-mono-700 cursor-pointer'
                 }
                 onClick={onClick}
               >
@@ -123,18 +123,20 @@ export default function Before() {
               </div>
             ))}
         </div>
-        <Link
-          to={'/diary'}
-          onClick={(event) => {
-            if (checkedEmotion.length === 0) {
-              event.preventDefault();
-              return customToast.error('하나 이상의 감정을 선택해주세요.');
-            }
-            dispatch(change(checkedEmotion));
-          }}
-        >
-          <button className={btnYellow}>일기 쓰러가기</button>
-        </Link>
+        <div className="mt-10">
+          <Link
+            to={'/diary'}
+            onClick={(event) => {
+              if (checkedEmotion.length === 0) {
+                event.preventDefault();
+                return customToast.error('하나 이상의 감정을 선택해주세요.');
+              }
+              dispatch(change(checkedEmotion));
+            }}
+          >
+            <button className={btnYellow}>일기 쓰러가기</button>
+          </Link>
+        </div>
       </article>
     </section>
   );

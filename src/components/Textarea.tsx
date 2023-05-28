@@ -18,7 +18,7 @@ export default function Textarea({
 }: Props) {
   return (
     <div
-      className="relative mt-4 h-1/2 bg-mono-100 text-mono-700 border-2 border-solid border-[#DCDCDC] rounded-lg
+      className="relative mt-4 min-h-[300px] max-h-1/2 bg-mono-100 text-mono-700 border-2 border-solid border-[#DCDCDC] rounded-lg
     resize-none"
     >
       <label
