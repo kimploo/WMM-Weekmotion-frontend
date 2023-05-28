@@ -93,7 +93,7 @@ export default function Register() {
   };
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col items-center">
+    <section className="bg-mono-100 h-screen flex flex-col items-center px-4 mt-10">
       {/* TODO: Form 엘리먼트 적용 */}
       {/* {import.meta.env.DEV ? (
         <>
@@ -107,10 +107,10 @@ export default function Register() {
       ) : null} */}
       {searchParams.get('view') === 'signUp' ? (
         <>
-          <article className="form-control">
+          <article className="flex flex-col justify-center w-full">
             <h1 className="text-2xl text-mono-700 font-bold">회원가입</h1>
             <div className="mt-5 flex justify-between flex-wrap gap-2">
-              <div className="flex justify-center items-center flex-grow ">
+              <div className="flex justify-center items-center flex-grow">
                 <div className="flex-grow">
                   <Input
                     type="text"
@@ -125,9 +125,9 @@ export default function Register() {
               <div className="flex justify-center items-center">
                 <button
                   onClick={checkIdRequest}
-                  className="btn flex-none rounded-full text-mono-100 bg-emotion-yellow border-emotion-yellow"
+                  className="w-[75px] h-10 rounded-full text-mono-100 bg-emotion-yellow border-emotion-yellow"
                 >
-                  중복확인
+                  확 인
                 </button>
               </div>
             </div>
@@ -163,6 +163,16 @@ export default function Register() {
             </div>
             <div className="mt-4">
               <Input
+                type="email"
+                name="email"
+                label="EMAIL"
+                placeholder="이메일을 입력하세요."
+                onChange={signUpInfoOnChange}
+                required={true}
+              ></Input>
+            </div>
+            <div className="mt-4">
+              <Input
                 type="tel"
                 name="tel"
                 label="휴대폰 번호"
@@ -172,7 +182,7 @@ export default function Register() {
               ></Input>
             </div>
           </article>
-          <div className="flex flex-col gap-4 py-4 w-1/2">
+          <div className="flex flex-col gap-4 mt-6 w-full">
             <button
               onClick={signUpRequest}
               className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100"
@@ -215,16 +225,16 @@ export default function Register() {
               ></Input>
             </div>
           </article>
-          <div className="flex flex-col gap-4 py-4 w-1/2">
+          <div className="flex flex-col gap-4 pt-10 w-full">
             <button
               onClick={signInRequest}
-              className="btn btn-wide w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100"
+              className="btn w-full rounded-full bg-emotion-yellow hover:bg-emotion-lightYellow border-emotion-yellow hover:border-emotion-lightYellow text-mono-100"
             >
               로그인
             </button>
             <button
               onClick={() => setSearchParams({ view: 'signUp' })}
-              className="btn btn-wide w-full rounded-full bg-mono-100 hover:bg-mono-100 border-emotion-yellow hover:border-emotion-yellow text-emotion-yellow"
+              className="btn w-full rounded-full bg-mono-100 hover:bg-mono-100 border-emotion-yellow hover:border-emotion-yellow text-emotion-yellow"
             >
               회원가입
             </button>
