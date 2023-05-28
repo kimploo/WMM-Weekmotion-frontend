@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { btnYellow, chipsColorPicker } from '../assets/customCSS/designSystem';
 import calendar from '../assets/images/calendar.svg';
 import { tag } from '../redux/types';
-import { toast } from '@kimploo/react-toastify';
 import { format } from 'date-fns';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
@@ -42,29 +41,31 @@ export default function Diary() {
   };
 
   return (
-    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
-      <div className="flex gap-x-[11px]">
+    <section className="bg-mono-100 flex flex-col gap-2 mx-5">
+      <div className="flex gap-x-[11px] mt-4">
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">
           {format(new Date(diaryInfo.date), 'yyyy.MM.dd')}
         </p>
       </div>
-      <div className="flex gap-x-2">
+      <div className="flex gap-x-2 mt-4">
         {state.emotion.map((item: tag, index: number) => (
           <div key={index} className={chipsColorPicker(item.tagCategory.seq)}>
             {item.tagName}
           </div>
         ))}
       </div>
-      <Input
-        type="text"
-        name="title"
-        id="title"
-        label="Title"
-        onChange={titleOnChange}
-        placeholder="제목을 작성해주세요."
-        required={true}
-      />
+      <div className="mt-4">
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          label="Title"
+          onChange={titleOnChange}
+          placeholder="제목을 작성해주세요."
+          required={true}
+        />
+      </div>
       <Textarea
         name="note"
         id="textarea"

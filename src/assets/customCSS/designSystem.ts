@@ -36,10 +36,10 @@ export const tab = 'text-lg w-1/2 h-full text-mono-400';
 // color picker function
 export const chipsColorPicker = (tagSeq: string) => {
   if (tagSeq === '1') {
-    return 'badge h-7 bg-emotion-lightPink border-emotion-lightPink text-mono-700 cursor-pointer p-3';
+    return 'h-7 px-3 rounded-full border-[1px] bg-emotion-lightPink border-x-transparent border-y-transparent text-mono-700 cursor-pointer';
   } else if (tagSeq === '2') {
-    return 'badge h-7 bg-emotion-lightBlue border-emotion-lightBlue text-mono-700 cursor-pointer p-3';
+    return 'h-7 px-3 rounded-full border-[1px] bg-emotion-lightBlue border-x-transparent border-y-transparent text-mono-700 cursor-pointer';
   } else {
-    return 'badge h-7 bg-emotion-lightYellow border-emotion-lightYellow text-mono-700 cursor-pointer p-3';
+    return 'h-7 px-3 rounded-full border-[1px] bg-emotion-yellow2 border-x-transparent border-y-transparent text-mono-700 cursor-pointer';
   }
 };
