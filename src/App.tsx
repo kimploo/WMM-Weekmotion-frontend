@@ -29,7 +29,7 @@ const Layout = () => {
   return (
     <>
       <Nav></Nav>
-      <div className="px-5 bg-mono-100">
+      <div className="bg-mono-100">
         <Outlet></Outlet>
       </div>
       <ToastContainer
