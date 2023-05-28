@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { change } from '../redux/slice/emotionSlice';
-import weekmotion from '../assets/images/weekmotion.svg';
+import weekmotion_logo_select from '../assets/images/weekmotion_logo_select.svg';
 import {
   btnYellow,
   chipsBlue,
   chipsBlueBorder,
+  chipsColorPicker,
   chipsPink,
   chipsPinkBorder,
   chipsYellow,
@@ -59,10 +60,10 @@ export default function Before() {
 
   return (
     <section className="bg-mono-100 h-screen flex flex-col items-center">
-      <div className="py-4">
-        <img src={weekmotion} alt="main_logo" />
+      <div className="mt-4">
+        <img src={weekmotion_logo_select} alt="main_logo" />
       </div>
-      <article className="w-4/5">
+      <article className="px-5 mt-10">
         <h1 className="text-2xl text-mono-700 font-bold">
           오늘의 감정을 선택하세요.
         </h1>

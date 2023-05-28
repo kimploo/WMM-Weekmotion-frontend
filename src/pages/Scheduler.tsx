@@ -133,7 +133,7 @@ export default function Scheduler() {
             <div className="w-1/6"></div>
             <button
               className={
-                'flex justify-center items-center grow h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold'
+                'flex justify-center items-center basis-[75px] h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold'
               }
               onClick={() => {
                 if (isCheckedToday) {
@@ -146,7 +146,7 @@ export default function Scheduler() {
             </button>
             <button
               className={
-                'flex justify-center items-center grow h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold'
+                'flex justify-center items-center  basis-[100px] h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold'
               }
               onClick={handleWriteButton}
             >

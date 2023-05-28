@@ -65,30 +65,43 @@ export default function Post() {
   };
 
   return (
-    <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
-      <div className="flex gap-x-[11px]">
+    <section className="bg-mono-100 gap-2 px-5">
+      <div className="flex gap-x-[11px] mt-4">
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">{`${data.note.date.slice(
           0,
           10
         )} 의 감정`}</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-x-2 mt-4">
         {emotion.emotion.map((item: tag, index: number) => (
           <div key={index} className={chipsColorPicker(item.tagCategory.seq)}>
             {item.tagName}
           </div>
         ))}
       </div>
-      <div className="text-mono-700 text-2xl font-bold">{data.note.title}</div>
-      <div className="text-mono-700 text-base">{data.note.note}</div>
+      <div className="text-mono-700 text-2xl font-bold mt-4">
+        {data.note.title}
+      </div>
+      <div className="text-mono-700 text-base mt-4">{data.note.note}</div>
       {/* 캘린더 버튼 */}
-      <button
-        className={btnYellow}
-        onClick={() => setIsModal({ ...isModal, toCalendar: true })}
-      >
-        감정을 캘린더로 보내기
-      </button>
+      <div className="mt-4">
+        <button
+          className={btnYellow}
+          onClick={() => setIsModal({ ...isModal, toCalendar: true })}
+        >
+          감정을 캘린더로 보내기
+        </button>
+      </div>
+      <div className="mt-4">
+        <button
+          className={btnYellowBorder + 'mt-4'}
+          onClick={() => setIsModal({ ...isModal, toTrash: true })}
+        >
+          감정을 소각장으로 보내기
+        </button>
+      </div>
+
       <input
         type="checkbox"
         id="toCalendar"
@@ -97,7 +110,7 @@ export default function Post() {
         readOnly
       />
       <div className="modal">
-        <div className="modal-box relative bg-mono-100">
+        <div className="modal-box p-5 bg-mono-100 mx-9 min-h-[328px] flex flex-col justify-between">
           <label
             htmlFor="toCalendar"
             className="btn absolute right-2 top-2 bg-mono-100 border-none hover:bg-mono-100"
@@ -105,7 +118,7 @@ export default function Post() {
           >
             <img src={closeIcon} alt="close_icon" />
           </label>
-          <h3 className="text-lg font-bold text-mono-700">
+          <h3 className="text-2xl font-bold text-mono-700">
             감정을 등록할까요?
             <br />
             등록한 감정은 캘린더에서
@@ -115,19 +128,23 @@ export default function Post() {
           <img
             src={weekmotion_toCalendar}
             alt="calendar_icon"
-            className="w-full px-5"
+            className="w-full"
           />
           <div className="flex justify-end gap-x-2">
             <label
               htmlFor="toCalendar"
-              className={smBtnYellowBorder}
+              className={
+                'flex justify-center items-center basis-[75px] h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold'
+              }
               onClick={() => setIsModal({ ...isModal, toCalendar: false })}
             >
               취소
             </label>
             <button
               onClick={() => requestDiary('calendar')}
-              className={smBtnYellow}
+              className={
+                'flex justify-center items-center basis-[100px] h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold'
+              }
             >
               등록하기
             </button>
@@ -135,12 +152,7 @@ export default function Post() {
         </div>
       </div>
       {/* 소각장 버튼 */}
-      <button
-        className={btnYellowBorder}
-        onClick={() => setIsModal({ ...isModal, toTrash: true })}
-      >
-        감정을 소각장으로 보내기
-      </button>
+
       <input
         type="checkbox"
         id="toTrash"
@@ -149,7 +161,7 @@ export default function Post() {
         readOnly
       />
       <div className="modal">
-        <div className="modal-box relative bg-mono-100">
+        <div className="modal-box p-5 bg-mono-100 mx-9 min-h-[328px] flex flex-col justify-between">
           <label
             htmlFor="toTrash"
             className="btn absolute right-2 top-2 bg-mono-100 border-none hover:bg-mono-100"
@@ -157,7 +169,7 @@ export default function Post() {
           >
             <img src={closeIcon} alt="close_icon" />
           </label>
-          <h3 className="text-lg font-bold text-mono-700">
+          <h3 className="text-2xl font-bold text-mono-700">
             감정을 소각장으로
             <br />
             보낼까요?
@@ -170,14 +182,18 @@ export default function Post() {
           <div className="flex justify-end gap-x-2">
             <label
               htmlFor="toTrash"
-              className={smBtnYellowBorder}
+              className={
+                'flex justify-center items-center basis-[75px] h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold'
+              }
               onClick={() => setIsModal({ ...isModal, toTrash: false })}
             >
               취소
             </label>
             <button
               onClick={() => requestDiary('trash')}
-              className={smBtnYellow}
+              className={
+                'flex justify-center items-center basis-[100px] h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold'
+              }
             >
               보내기
             </button>

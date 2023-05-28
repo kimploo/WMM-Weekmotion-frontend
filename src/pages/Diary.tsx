@@ -41,7 +41,7 @@ export default function Diary() {
   };
 
   return (
-    <section className="bg-mono-100 flex flex-col gap-2 mx-5">
+    <section className="bg-mono-100 gap-2 mx-5">
       <div className="flex gap-x-[11px] mt-4">
         <img src={calendar} alt="calendar_icon" />
         <p className="text-mono-700 text-2xl font-bold">
