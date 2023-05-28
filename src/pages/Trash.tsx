@@ -49,7 +49,7 @@ export default function Trash() {
   }, [range]);
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col items-center">
+    <section className="bg-mono-100 min-h-screen h-auto max-h-full flex flex-col items-center">
       <nav className="flex w-full h-12 justify-between items-center">
         <img
           src={backIcon}
