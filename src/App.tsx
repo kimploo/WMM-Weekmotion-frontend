@@ -18,7 +18,6 @@ import Post from './pages/Post';
 import SplashScreen from './pages/SplashScreen';
 import TestToast from './pages/dev/TestToast';
 import { ToastContainer } from '@kimploo/react-toastify';
-// import './toast.css';
 import '@kimploo/react-toastify/dist/ReactToastify.css';
 import Trash from './pages/Trash';
 import TrashPost from './pages/TrashPost';
@@ -74,7 +73,7 @@ const router = createBrowserRouter(
     </Route>
   )
 );
-8;
+
 if (import.meta.hot) {
   import.meta.hot.dispose(() => router.dispose());
 }
