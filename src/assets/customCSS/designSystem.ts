@@ -9,9 +9,9 @@ export const btnGrayBorder =
   'btn w-full h-14 border-2 rounded-full bg-mono-100 border-mono-300 font-sans text-mono-300 text-base font-bold';
 // small button css
 export const smBtnYellow =
-  'btn min-w-[103px] h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold';
+  'flex justify-center items-center grow h-10 rounded-full bg-emotion-yellow border-emotion-yellow font-sans text-mono-100 text-sm font-bold';
 export const smBtnYellowBorder =
-  'btn min-w-[103px] h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold';
+  'flex justify-center items-center grow h-10 border-2 rounded-full bg-mono-100 border-emotion-yellow font-sans text-emotion-yellow text-sm font-bold';
 export const smBtnGray =
   'btn min-w-[103px] h-10 rounded-full bg-mono-300 border-mono-300 font-sans text-mono-100 text-sm font-bold';
 export const smBtnGrayBorder =
