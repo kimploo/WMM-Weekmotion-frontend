@@ -28,7 +28,7 @@ export default function Textarea({
         {label}
       </label>
       <textarea
-        className="block w-full pl-4 pt-3 h-full border-transparent appearance-none bg-transparent"
+        className="block w-full pl-4 pt-3 min-h-[300px] max-h-1/2 border-transparent appearance-none bg-transparent"
         name={name}
         id={id}
         onChange={onChange}
