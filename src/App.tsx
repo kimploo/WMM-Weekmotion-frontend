@@ -3,7 +3,8 @@ import {
   RouterProvider,
   Outlet,
   createRoutesFromElements,
-  Route
+  Route,
+  useMatch
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux';
@@ -26,9 +27,11 @@ import EditPost from './pages/EditPost';
 import Loading from './pages/Loading';
 
 const Layout = () => {
+  const isResister = useMatch('/register');
+
   return (
     <>
-      <Nav></Nav>
+      {isResister ? null : <Nav></Nav>}
       <div className="bg-mono-100">
         <Outlet></Outlet>
       </div>
