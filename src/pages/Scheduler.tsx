@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import '../assets/customCSS/calendar.css';
 import {
@@ -19,11 +19,11 @@ import DateRangePicker from '../components/DateRangePicker';
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
 import devConsoleLog from '../util/log/devConsoleLog';
-import { Range } from 'react-calendar/dist/cjs/shared/types';
+import { Range, Value } from 'react-calendar/dist/cjs/shared/types';
 
 export default function Scheduler() {
   const currentDate = new Date();
-  const [value, onChange] = useState<Date>(currentDate);
+  const [date, setDate] = useState<Value>(currentDate);
   const [range, setRange] = useState<Range<Date>>([currentDate, currentDate]);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
   const [isChecked, setIsChecked] = useState(false);
@@ -33,6 +33,14 @@ export default function Scheduler() {
   const handleDatePicker = (range: Range<Date>) => {
     devConsoleLog('handleDatePicker', range);
     setRange(range);
+  };
+
+  const handleCalendar = (
+    date: Value,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setDate(date);
+    setTabParams({ tab: 'list' });
   };
 
   useEffect(() => {
@@ -137,7 +145,11 @@ export default function Scheduler() {
         </div>
       </div>
       {tabParams.get('tab') === 'calendar' ? (
-        <WMMCalendar value={value} onChange={onChange} diaries={diaries} />
+        <WMMCalendar
+          date={date}
+          handleCalendar={handleCalendar}
+          diaries={diaries}
+        />
       ) : (
         <>
           <DateRangePicker range={range} setRange={handleDatePicker} />

@@ -6,7 +6,8 @@ import { format } from 'date-fns';
 import {
   TileArgs,
   TileClassNameFunc,
-  TileContentFunc
+  TileContentFunc,
+  Value
 } from 'react-calendar/dist/cjs/shared/types';
 import './WMMCalendar.css';
 import CalendarDropdownIcon from '../items/CalendarDropdownIcon';
@@ -14,12 +15,15 @@ import WMMCalendarTile from './WMMCalendarTile';
 import { TagCategorySeq, diary } from '../redux/types';
 
 interface Props {
-  value: Date;
-  onChange: React.Dispatch<React.SetStateAction<Date>>;
+  date: Value;
+  handleCalendar: (
+    date: Value,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
   diaries: diary[];
 }
 
-export default function WMMCalendar({ value, onChange, diaries }: Props) {
+export default function WMMCalendar({ date, handleCalendar, diaries }: Props) {
   const tileClassName: TileClassNameFunc = ({
     activeStartDate,
     date,
@@ -38,9 +42,9 @@ export default function WMMCalendar({ value, onChange, diaries }: Props) {
 
   return (
     <Calendar
-      value={value}
+      value={date}
       className={'wmm-calendar-view'}
-      // onChange={onChange}
+      onChange={handleCalendar}
       navigationLabel={({ date, label, locale, view }) => (
         <div className="flex justify-center">
           <WMMLogo />
