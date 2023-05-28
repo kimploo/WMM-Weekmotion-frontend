@@ -31,7 +31,9 @@ export default function TrashPost() {
         }
       );
       if (response.status === 200) {
+        setDeleteModal(false);
         navigate(location.pathname);
+        customToast.success('완전 소각되었습니다.');
       }
     } catch (error) {
       console.error(error);
