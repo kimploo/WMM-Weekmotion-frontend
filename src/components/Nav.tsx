@@ -6,7 +6,7 @@ import add from '../assets/images/add.svg';
 
 export default function Nav() {
   return (
-    <div className="navbar bg-mono-100">
+    <div className="navbar min-h-[3.5rem] bg-mono-100">
       <div className="flex-1 pl-4">
         <Link to={'/'}>
           <img src={weekmotionTitle} alt="title" />

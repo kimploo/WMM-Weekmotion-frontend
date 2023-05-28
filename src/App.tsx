@@ -25,13 +25,25 @@ import TrashPost from './pages/TrashPost';
 import SchedulerPost from './pages/SchedulerPost';
 import EditPost from './pages/EditPost';
 import Loading from './pages/Loading';
+import NavNoLogo from './components/NavNoLogo';
 
 const Layout = () => {
-  const isResister = useMatch('/register');
+  const isScheduler = useMatch('/scheduler');
+  const isRoot = useMatch('/');
+
+  let navHere;
+
+  if (isRoot) {
+    navHere = null;
+  } else if (isScheduler) {
+    navHere = <Nav />;
+  } else {
+    navHere = <NavNoLogo />;
+  }
 
   return (
     <>
-      {isResister ? null : <Nav></Nav>}
+      {navHere}
       <div className="bg-mono-100">
         <Outlet></Outlet>
       </div>
@@ -55,12 +67,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Loading />}></Route>
-      <Route path="diary" element={<Diary />}></Route>
       <Route path="scheduler" element={<Scheduler />}></Route>
       <Route path=":id" element={<SchedulerPost />}></Route>
       <Route path="scheduler/:id" element={<SchedulerPost />}></Route>
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
+      <Route path="diary" element={<Diary />}></Route>
       <Route path="after" element={<After />}></Route>
       <Route path="edit/:id" element={<EditPost />}></Route>
       <Route path="post" element={<Post />}></Route>
