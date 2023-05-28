@@ -9,20 +9,13 @@ import { btnYellow, chipsColorPicker } from '../assets/customCSS/designSystem';
 import calendar from '../assets/images/calendar.svg';
 import { tag } from '../redux/types';
 import { toast } from '@kimploo/react-toastify';
+import { format } from 'date-fns';
 
 export default function Diary() {
   const [diaryInfo, setDiaryInfo] = useState({
     title: '',
     note: '',
-    date: new Date()
-      .toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-      })
-      .split(' ')
-      .join('')
-      .slice(0, -1)
+    date: new Date().toISOString()
   });
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => {
@@ -49,7 +42,9 @@ export default function Diary() {
     <section className="bg-mono-100 w-full h-screen flex flex-col gap-2">
       <div className="flex gap-x-[11px]">
         <img src={calendar} alt="calendar_icon" />
-        <p className="text-mono-700 text-2xl font-bold">{diaryInfo.date}</p>
+        <p className="text-mono-700 text-2xl font-bold">
+          {format(new Date(diaryInfo.date), 'yyyy.MM.dd')}
+        </p>
       </div>
       <div className="flex gap-x-2">
         {state.emotion.map((item: tag, index: number) => (

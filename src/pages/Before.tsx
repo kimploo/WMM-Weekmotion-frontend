@@ -19,6 +19,8 @@ import { BASE_URL } from '../redux/function/url';
 import { tag } from '../redux/types';
 import { toast } from '@kimploo/react-toastify';
 
+// TODO: 부정적 감정, ETC 감정 기록 불가
+
 export default function Before() {
   const [emotion, setEmotion] = useState<tag[]>([]);
   const [checkedEmotion, setCheckedEmotion] = useState<any[]>([]);
