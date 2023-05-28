@@ -17,7 +17,7 @@ export default function Trash() {
         <h1 className="text-xl text-mono-700 justify-self-center">소각장</h1>
         <div></div>
       </nav>
-      <List />
+      {/* <List /> */}
     </section>
   );
 }
