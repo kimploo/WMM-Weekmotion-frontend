@@ -18,6 +18,7 @@ import DateRangePicker from '../components/DateRangePicker';
 
 import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
+import devConsoleLog from '../util/log/devConsoleLog';
 
 export default function Scheduler() {
   const currentDate = new Date();
@@ -26,16 +27,16 @@ export default function Scheduler() {
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedToday, setIsCheckedToday] = useState(false);
   const [diaries, setDiaries] = useState([]);
-  const token = import.meta.env.DEV ? import.meta.env.VITE_TEST_TOKEN : '';
 
   useEffect(() => {
     axios
       .get(`${BASE_URL}/diary`, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
       })
       .then((data) => {
+        devConsoleLog('data', data);
         setDiaries(data.data.data);
       });
   }, []);

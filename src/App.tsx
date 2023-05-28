@@ -60,7 +60,6 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register />}></Route>
       <Route path="before" element={<Before />}></Route>
       <Route path="after" element={<After />}></Route>
-      <Route path="list-test" element={<ListTest />}></Route>
       <Route path="edit/:id" element={<EditPost />}></Route>
       <Route path="post" element={<Post />}></Route>
       <Route path="trash" element={<Trash />}></Route>

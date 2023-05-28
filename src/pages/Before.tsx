@@ -128,7 +128,7 @@ export default function Before() {
           onClick={(event) => {
             if (checkedEmotion.length === 0) {
               event.preventDefault();
-              customToast.error('하나 이상의 감정을 선택해주세요.');
+              return customToast.error('하나 이상의 감정을 선택해주세요.');
             }
             dispatch(change(checkedEmotion));
           }}

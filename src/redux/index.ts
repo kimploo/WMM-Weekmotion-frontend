@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
 import emotionSlice from './slice/emotionSlice';
 import noteSlice from './slice/noteSlice';
 
