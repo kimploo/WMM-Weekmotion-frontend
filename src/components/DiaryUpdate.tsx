@@ -2,18 +2,26 @@ import { toast } from '@kimploo/react-toastify';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { btnYellow } from '../assets/customCSS/designSystem';
+import { btnYellow, chipsColorPicker } from '../assets/customCSS/designSystem';
 import { BASE_URL } from '../redux/function/url';
-import { diary } from '../redux/types';
+import { diary, diaryTag } from '../redux/types';
 import customToast from '../util/toast';
+import Input from './Input';
+import Textarea from './Textarea';
+import editIcon from '../assets/images/edit.svg';
 
 export default function DiaryUpdate({ params }: { params: string }) {
   const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState<boolean>(true);
   const [post, setPost] = useState<diary>();
   const [updateInfo, setUpdateInfo] = useState({
     title: '' as string,
     note: '' as string
   });
+
+  const handleEditButton = () => {
+    setIsEdit(!isEdit);
+  };
 
   const requestPost = async () => {
     try {
@@ -51,32 +59,46 @@ export default function DiaryUpdate({ params }: { params: string }) {
 
   return (
     <div className="h-screen">
-      <label htmlFor="title" className="label">
-        Title
-      </label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        className="input input-bordered w-full bg-mono-100 text-mono-700"
-        placeholder="제목을 작성해주세요."
-        onChange={titleOnChange}
-        defaultValue={post?.title}
-        required
-      />
-      <label htmlFor="note" className="label">
-        Note
-      </label>
-      <textarea
+      <div className="flex gap-2 mt-4">
+        {post?.tags.map((item: diaryTag, index: number) => (
+          <div
+            key={index}
+            className={chipsColorPicker(item.tag.tagCategorySeq)}
+          >
+            {item.tag.tagName}
+          </div>
+        ))}
+        {/* TODO: 감정 수정 아이콘 필요 */}
+        <img src={editIcon} alt="edit-icon" />
+      </div>
+      <div className="mt-4">
+        <Input
+          type="text"
+          name="title"
+          id="title"
+          label="Title"
+          placeholder="제목을 작성해주세요."
+          onChange={titleOnChange}
+          defaultValue={post?.title}
+          required
+          disabled={!isEdit}
+        ></Input>
+      </div>
+      <Textarea
         name="note"
         id="textarea"
-        className="textarea textarea-bordered w-full h-1/2 bg-mono-100 text-mono-700 resize-none mb-5"
+        label="Note"
         placeholder="일기 내용을 작성해주세요."
         onChange={textAreaOnChange}
         defaultValue={post?.contents}
         required
-      />
-      <button className={btnYellow}>수정하기</button>
+        disabled={!isEdit}
+      ></Textarea>
+      <div className="mt-10">
+        <button className={btnYellow} onClick={handleEditButton}>
+          {isEdit ? '수정 완료' : '수정하기'}
+        </button>
+      </div>
     </div>
   );
 }

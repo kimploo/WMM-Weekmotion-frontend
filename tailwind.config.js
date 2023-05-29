@@ -19,7 +19,7 @@ export const theme = {
       700: '#000000'
     },
     grey: {
-      0: 'hsla(0, 0%, 0%, 1)',
+      0: 'rgba(0, 0, 0, 1)',
       1: 'rgba(41, 41, 41, 1)',
       2: 'rgba(102, 102, 102, 1)',
       3: 'rgba(172, 172, 172, 1)',
@@ -28,7 +28,7 @@ export const theme = {
       FF: 'rgba(255, 255, 255, 1)'
     },
     emotion: {
-      yellow: '#FFD54A',
+      yellow: 'rgba(255, 213, 74, 1)',
       yellow2: '#FFE388',
       lightYellow: '#FAE5A0',
       pink: '#FF64AE',

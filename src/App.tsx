@@ -31,7 +31,8 @@ import NavEdit from './components/NavWIthEditIcon';
 const Layout = () => {
   const isScheduler = useMatch('/scheduler');
   const isSchedulerPost = useMatch('/scheduler/:id');
-  const isPost = useMatch('/scheduler/:id');
+  const isTrashPost = useMatch('/trash/:id');
+  const isPost = useMatch('/:id');
   const isRoot = useMatch('/');
 
   let navHere;
@@ -40,7 +41,7 @@ const Layout = () => {
     navHere = null;
   } else if (isScheduler) {
     navHere = <Nav />;
-  } else if (isSchedulerPost || isPost) {
+  } else if (isTrashPost || isSchedulerPost || isPost) {
     navHere = <NavEdit />;
   } else {
     navHere = <NavNoLogo />;

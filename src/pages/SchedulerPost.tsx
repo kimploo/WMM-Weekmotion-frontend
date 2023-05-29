@@ -37,7 +37,10 @@ export default function SchedulerPost() {
       <DiaryPost params={params.id || '0'} />
       <div className="pt-10">
         {/* 버튼에 소각장 카테고리로 수정 기능 추가해야함 */}
-        <button className={`${btnYellow} mb-4`} onClick={requestToTrash}>
+        <button
+          className={`btn w-full h-14 border-2 rounded-full bg-mono-100 border-emotion-yellow text-emotion-yellow text-base font-bold tracking-[1px]`}
+          onClick={requestToTrash}
+        >
           감정을 소각장으로 보내기
         </button>
       </div>

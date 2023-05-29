@@ -42,17 +42,7 @@ export default function TrashPost() {
   };
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col">
-      <nav className="w-full h-12 flex justify-between items-center">
-        <button onClick={() => navigate(-1)}>
-          <img src={backIcon} alt="back_icon" />
-        </button>
-        <Link to={`/edit/${params.id}`}>
-          <button>
-            <img src={editIcon} alt="edit_icon" />
-          </button>
-        </Link>
-      </nav>
+    <section className="bg-mono-100 h-screen flex flex-col px-5">
       <DiaryPost params={params.id || '0'} />
       <div className="pt-10">
         <button className={`${btnYellow} mb-4`}>감정을 캘린더로 보내기</button>
