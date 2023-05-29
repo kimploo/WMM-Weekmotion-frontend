@@ -6,6 +6,7 @@ import { BASE_URL } from '../redux/function/url';
 import backIcon from '../assets/images/back.svg';
 import editIcon from '../assets/images/edit.svg';
 import customToast from '../util/toast';
+import NavEdit from '../components/NavWIthEditIcon';
 
 export default function SchedulerPost() {
   const params = useParams();
@@ -32,17 +33,7 @@ export default function SchedulerPost() {
   };
 
   return (
-    <section className="bg-mono-100 h-screen flex flex-col">
-      <nav className="w-full h-12 flex justify-between items-center">
-        <button onClick={() => navigate(-1)}>
-          <img src={backIcon} alt="back_icon" />
-        </button>
-        <Link to={`/edit/${params.id}`}>
-          <button>
-            <img src={editIcon} alt="edit_icon" />
-          </button>
-        </Link>
-      </nav>
+    <section className="bg-mono-100 h-screen flex flex-col px-5">
       <DiaryPost params={params.id || '0'} />
       <div className="pt-10">
         {/* 버튼에 소각장 카테고리로 수정 기능 추가해야함 */}

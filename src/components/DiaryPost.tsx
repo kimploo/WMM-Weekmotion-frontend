@@ -31,15 +31,15 @@ export default function DiaryPost({ params }: { params: string }) {
 
   return (
     <>
-      <div className="flex gap-x-[11px] pb-4">
+      <div className="flex gap-x-[11px]">
         <img src={calendar} alt="calendar_icon" />
-        <p className="text-mono-700 text-2xl font-bold">
+        <p className="text-grey-0 text-2xl/[1.5rem] font-bold">
           {post
             ? `${format(new Date(post.modDate), 'yyyy.MM.dd')} 의 감정`
             : '감정'}
         </p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-4">
         {post?.tags.map((item: diaryTag, index: number) => (
           <div
             key={index}
@@ -49,8 +49,10 @@ export default function DiaryPost({ params }: { params: string }) {
           </div>
         ))}
       </div>
-      <div className="text-mono-700 text-2xl font-bold py-4">{post?.title}</div>
-      <div className="text-mono-700 text-base">{post?.contents}</div>
+      <div className="text-grey-0 text-2xl font-bold py-4">{post?.title}</div>
+      <div className="text-grey-0 text-base font-medium text-justify tracking-[0.5px]">
+        {post?.contents}
+      </div>
     </>
   );
 }

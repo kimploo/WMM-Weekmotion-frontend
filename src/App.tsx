@@ -26,9 +26,12 @@ import SchedulerPost from './pages/SchedulerPost';
 import EditPost from './pages/EditPost';
 import Loading from './pages/Loading';
 import NavNoLogo from './components/NavNoLogo';
+import NavEdit from './components/NavWIthEditIcon';
 
 const Layout = () => {
   const isScheduler = useMatch('/scheduler');
+  const isSchedulerPost = useMatch('/scheduler/:id');
+  const isPost = useMatch('/scheduler/:id');
   const isRoot = useMatch('/');
 
   let navHere;
@@ -37,6 +40,8 @@ const Layout = () => {
     navHere = null;
   } else if (isScheduler) {
     navHere = <Nav />;
+  } else if (isSchedulerPost || isPost) {
+    navHere = <NavEdit />;
   } else {
     navHere = <NavNoLogo />;
   }
