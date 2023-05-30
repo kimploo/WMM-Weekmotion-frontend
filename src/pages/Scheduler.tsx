@@ -19,9 +19,12 @@ import axios from 'axios';
 import { BASE_URL } from '../redux/function/url';
 import devConsoleLog from '../util/log/devConsoleLog';
 import { Range, Value } from 'react-calendar/dist/cjs/shared/types';
+import { utcToZonedTime } from 'date-fns-tz';
 
 export default function Scheduler() {
   const currentDate = new Date();
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
   const [date, setDate] = useState<Value>(currentDate);
   const [range, setRange] = useState<Value>([currentDate, currentDate]);
   const [tabParams, setTabParams] = useSearchParams({ tab: 'calendar' });
@@ -31,7 +34,6 @@ export default function Scheduler() {
   const navigate = useNavigate();
 
   const handleDatePicker = (range: Value) => {
-    devConsoleLog('handleDatePicker', range);
     setRange(range);
   };
 
@@ -40,6 +42,7 @@ export default function Scheduler() {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     setDate(date);
+    setRange([date, date] as Value);
     setTabParams({ tab: 'list' });
   };
 
