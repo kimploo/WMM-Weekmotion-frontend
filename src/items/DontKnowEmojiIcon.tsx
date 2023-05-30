@@ -21,8 +21,8 @@ export default function DontKnowEmojiIcon() {
           fill="black"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M5.99316 5.99999C5.99316 5.75146 6.19464 5.54999 6.44316 5.54999L8.84316 5.54999C9.09169 5.54999 9.29316 5.75146 9.29316 5.99999C9.29316 6.24852 9.09169 6.44999 8.84316 6.44999L6.44316 6.44999C6.19464 6.44999 5.99316 6.24852 5.99316 5.99999Z"
           fill="black"
         />
